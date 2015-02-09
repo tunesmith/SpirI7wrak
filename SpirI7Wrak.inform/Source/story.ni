@@ -76,6 +76,8 @@ Part - Compiler Options
 
 Use MAX_OBJECTS of 1400.
 
+Use MAX_OBJ_PROP_COUNT of 96.
+
 Use MAX_PROP_TABLE_SIZE of 520000.
 
 Use MAX_STATIC_DATA of 590000.
