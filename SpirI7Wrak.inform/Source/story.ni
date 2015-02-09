@@ -1,4 +1,4 @@
-"SpirI7wrak" by "An Inform 7 Enthusiast"
+"SpirI7wrak6L38" by "Otis T. Dog"
 
 
 
@@ -13,11 +13,11 @@ Part - Introduction to the Source Code
 Chapter - About This Work
 
 
-[This is an Inform 7 (6G60) port of the game "Spiritwrak", developed by Daniel S. Yu and released under the GPL.
+[This is an Inform 7 (6L38) port of the game "Spiritwrak", developed by Daniel S. Yu and released under the GPL.
 
 The original Spiritwrak was written in Inform 5.5 and consisted of multiple files. "SPIRIT.INF" was the main/primary file, and the others were all included from within it.
 
-Translating this work has been a sizable effort, and one of the reasons I'm doing it is to attempt to provide a relatively clean, well-ordered and easy-to-understand example of Inform 7 that demonstrates how to take advantage of many of I7's powerful features. New authors are encouraged to study this source code, experiment with it, and modify it as they see fit. Anyone else interested in converting an Inform 6-era piece of code into Inform 7 may also find it of value -- though likely somewhat less so now that the successor of I7 6G60 has been released. 
+Translating this work has been a sizable effort, and one of the reasons I'm doing it is to attempt to provide a relatively clean, well-ordered and easy-to-understand example of Inform 7 that demonstrates how to take advantage of many of I7's powerful features. New authors are encouraged to study this source code, experiment with it, and modify it as they see fit. Anyone else interested in converting an Inform 6-era piece of code into Inform 7 may also find it of value. 
 
 To assist in reconciling this I7 source to the I5.5 original, the organization of this source generally follows the structure of the original source. Each .INF file is given its own Part, and each object is given its own Chapter (for rooms or complex NPCs) or Section (for normal objects). Each Part is labeled with the name of the source file, and each Chapter or Section with the object name of the thing implemented. There is some fuzziness to this mapping, particularly in places where I reorganized the logic of certain aspects of the game, but,on the whole, these tags should let one cross-reference the two sources relatively easily.
 
@@ -78,11 +78,13 @@ Use MAX_OBJECTS of 1400.
 
 Use MAX_PROP_TABLE_SIZE of 520000.
 
-Use MAX_STATIC_DATA of 510000.
+Use MAX_STATIC_DATA of 590000.
 
-Use MAX_SYMBOLS of 22500.
+Use MAX_SYMBOLS of 35000.
 
-Use MAX_DICT_ENTRIES of 2075.
+Use MAX_DICT_ENTRIES of 2150.
+
+Use MAX_NUM_STATIC_STRINGS of 32500.
 
 
 
@@ -90,6 +92,7 @@ Part - Use Options
 
 Use American dialect.
 
+Use scoring. [Scoring must be formally requested as of I7 6L02.]
 
 
 Part - Bibliographic Data
@@ -98,11 +101,11 @@ The story headline is "An Inform 7 Port of Daniel S. Yu's 'SPIRITWRAK'".
 
 The story genre is "Fantasy".
 
-The story description is "The evil demon Anabais, once conquered by the Ancients, has returned. A lone monk's journey to vanquish the demon takes him on a quest through the world of Infocom's Quendor mythos. (Note: This work is an Inform 7 port of Daniel S. Yu's original, which was released in 1996, with minor enhancements. It is released -- as was the original -- per the terms of the GNU General Public License.)"
+The story description is "The evil demon Anabais, once conquered by the Ancients, has returned. A lone monk's journey to vanquish the demon takes him on a quest through the world of Infocom's Quendor mythos. (Note: This work is an Inform 7 port of Daniel S. Yu's original, which was released in 1996, with minor enhancements. It is released -- as was the original -- per the terms of the GNU General Public License.)".
 
-The story creation year is 2014.
+The story creation year is 2015.
 
-The release number is 1. [Dec 18 2014]
+The release number is 0. [Feb 09 2015] [TODO]
 
 
 
@@ -110,6 +113,8 @@ Part - Extensions
 
 
 Chapter - Plurality
+
+[As of release 6L02, the functionality of the Plurality extension is no longer included with Inform 7. As a quick-and-dirty way to restore certain functionality, it is manually included after download from the inform7.com extensions library.]
 
 Include Plurality by Emily Short. [Thank you, Emily!]
 
@@ -137,24 +142,6 @@ Include Easy Pronouns by Otis The Dog.
 
 Chapter - GNU General Public License v3
 
-[Note that it was necessary to modify this extension very slightly from the version available at the Inform 7 site, due to a problem in I7 6G60 (see bug #551 at http://inform7.com/mantis/view.php?id=551) The following:
-
-	Chapter 3 - Releasing the Source Code as Expected
-
-	[When releasing software under the GPL, it is required that the source code be readily available so that others may modify the work.]
-
-	Release along with the source text.
-
-was changed to:
-
-	Chapter 3 - Releasing the Source Code as Expected
-
-	[When releasing software under the GPL, it is required that the source code be readily available so that others may modify the work.]
-
-	[Release along with the source text.] [disabled to allow release in the form of a blorb file under I7 6G60]
-
-This bug has been resolved in I7 6L02 and later versions, so it should not be necessary for you to do the same if building a derivative work.]
-
 Include GNU General Public License v3 by Free Software Foundation. [See this extension for the contents of the COPYING file required by the GPL, if you did not receive it separately as part of the materials shipped with this source code.] Suppress GPL author instructions is true. COPYING file included is true. The copyright holder is "Otis T. Dog".
 
 The GPL's recommended announcement at startup rule is not listed in the when play begins rules. [to follow the original's style more closely, we want this to appear after the banner but before the initial room description]
@@ -171,6 +158,8 @@ Release along with the source text.  [Note: do not remove; required for GPL comp
 Release along with the library card.
 
 Release along with the introductory booklet.
+
+[The following inclusions disabled due to an issue with I7 6L38; please include manually. [TODO]
 
 Release along with a file of "README file (guide to included materials)" called "README.txt". 
 
@@ -191,7 +180,7 @@ Release along with a file of "Easy Achievements, a small personal extension used
 Release along with a file of "Easy I6-Style Scoring, a small extension used by Easy Achivements" called "Easy I6-Style Scoring.i7x".
 
 Release along with a file of "Easy Pronouns, another small personal extension used by this work" called "Easy Pronouns.i7x".
-
+]
 
 
 Part - Scoring
@@ -637,7 +626,7 @@ This is the print tall-format inventory rule:
 	follow the print standard inventory rule. [this is default format in I7 6G60]
 
 This is the print wide-format inventory rule: [modification of Standard Rules' "print standard inventory" rule]
-	issue library message taking inventory action number 2;
+	say "[text of print standard inventory rule response (A)]";
 	say " ";
 	list the contents of the player, as a sentence, including contents, giving inventory information;
 	say "."
@@ -872,15 +861,15 @@ First after reading a command (this is the alternate oops functionality rule):
 [		say "(oops detected)[line break]";]
 		if oops-from is zero:
 [			say "(no apparent error in last command)[line break]";]
-			issue miscellaneous library message number 14;
+			say "[text of parser command internal rule response (A)]"; [miscellaneous library message number 14]
 			rule fails; [IMPDO - can get this to work even for replacing first word?]
 		if punctuated word number 2 in the player's command is empty:
 [			say "(no replacement word)[line break]";]
-			issue miscellaneous library message number 15;
+			say "[text of parser command internal rule response (B)]"; [miscellaneous library message number 15]
 			rule fails;
 		if the number of punctuated words in the player's command is greater than 2:
 [			say "(too many words provided for oops)[line break]";]
-			issue miscellaneous library message number 16;
+			say "[text of parser command internal rule response (C)]"; [miscellaneous library message number 16]
 			change the text of the player's command to complete previous command; [allow second try]
 			rule fails;
 		if punctuated word number 2 in the player's command is not empty:
@@ -1241,7 +1230,7 @@ Then I created an every turn when preamble "when the current action is pushing a
 This approach was worked out after examining the 6G60 Standard Rules. It is triggered instead of the normal report going rule only when pushing a crate, and by "considering" the same rule followed within the normal report going rule, the room description is generated in its usual manner.]
 
 Report the player going when the thing gone with is a crate (called moved crate) (this is the make up for inaccessible I7 logic rule):
-	consider the describe room gone into rule;
+	follow the describe room gone into rule;
 	say "You release [the moved crate] as it scrapes to a halt.";
 	rule succeeds. [halt processing of report rulebook]
 
@@ -1297,53 +1286,53 @@ Although this could be handled by creation of an I7 Before rule changing the gat
 
 The logic was reworked so that gates "absorb" coins and only allow passage from the outside in when a coin is part of the gate.]
 
-A GUS Gate is a kind of door. A GUS Gate can be damaged. A GUS Gate is always open and unopenable. Understand "metal" or "gate" as a GUS Gate.
+A GUS-Gate is a kind of door. A GUS-Gate can be damaged. A GUS-Gate is always open and unopenable. Understand "metal" or "gate" as a GUS-Gate.
 
-Definition: a GUS Gate is passable rather than blocked if it incorporates a coin.
+Definition: a GUS-Gate is passable rather than blocked if it incorporates a coin.
 
 [Note that, though this class is given the I6 'transparent' property in the original (so that the embedded slot is accessible), and the new default I7 behavior of showing all parts would not require any equivalent, this kind requires the following concealed possessions rule due to the coin-absorbing behavior described above.]
 
-Rule for deciding the concealed possessions of a GUS Gate:
+Rule for deciding the concealed possessions of a GUS-Gate:
 	if the particular possession is a coin, yes;
 	otherwise no.
 
 [Note the revision of the description of a gate as compared to the original source code. This license is taken in an attempt to make the nature of the "gate" more clear.]
 
-The initial appearance of a GUS Gate is usually "A metal gate bisects the fence to the [direction of a random touchable GUS Gate from location]." The description of a GUS Gate is usually "'Gate' is perhaps a misnomer; there is no door, so the gate is really more of a gap in the fence than anything else. The two metal posts to either side of the empty space come up to about your waist[if a random touchable GUS Gate incorporates the thin slot]. There's a thin slot on one of the sides[end if][if a random touchable damaged GUS Gate incorporates the thin slot] that looks slightly dented[end if]." The printed name of a GUS Gate is usually "platform gate". Understand "platform gate" or "gap" as a GUS Gate.
+The initial appearance of a GUS-Gate is usually "A metal gate bisects the fence to the [direction of a random touchable GUS-Gate from location]." The description of a GUS-Gate is usually "'Gate' is perhaps a misnomer; there is no door, so the gate is really more of a gap in the fence than anything else. The two metal posts to either side of the empty space come up to about your waist[if a random touchable GUS-Gate incorporates the thin slot]. There's a thin slot on one of the sides[end if][if a random touchable damaged GUS-Gate incorporates the thin slot] that looks slightly dented[end if]." The printed name of a GUS-Gate is usually "platform gate". Understand "platform gate" or "gap" as a GUS-Gate.
 
 To discourage fare-jumping:
 	say "A subway worker yells 'Hey pal, no fare-jumpers!'"
 
-Instead of climbing a GUS Gate (this is the an early example of the inexplicably-impassable low metal fence rule):
+Instead of climbing a GUS-Gate (this is the an early example of the inexplicably-impassable low metal fence rule):
 	discourage fare-jumping.
 
-Instead of jumping over a GUS Gate (this is the you'll actually need to find some coins here rule):
+Instead of jumping over a GUS-Gate (this is the you'll actually need to find some coins here rule):
 	discourage fare-jumping.
 
-Instead of opening a GUS Gate (this is the GUS Gates can't be opened rule):
+Instead of opening a GUS-Gate (this is the GUS Gates can't be opened rule):
 	say "It looks like it's already open."
 
-Instead of closing a GUS Gate (this is the GUS Gates can't be closed rule):
+Instead of closing a GUS-Gate (this is the GUS Gates can't be closed rule):
 	say "There doesn't seem to be anything to close."
 
 [Note that the logic of the following rule is, in the original source code, repeated with appropriate variation for every *_GUSStop location.]
 
-Instead of inserting a coin (called proposed payment) into a GUS Gate (called slot-containing gate) while the thin slot is at hand (this is the interpret putting coins in a GUS gate as putting them in the gate's slot when available rule):
+Instead of inserting a coin (called proposed payment) into a GUS-Gate (called slot-containing gate) while the thin slot is at hand (this is the interpret putting coins in a GUS gate as putting them in the gate's slot when available rule):
 	try inserting the proposed payment into the thin slot instead.
 
-Check inserting a coin into a GUS Gate (this is the it's the slot that takes coins not the gate rule):
+Check inserting a coin into a GUS-Gate (this is the it's the slot that takes coins not the gate rule):
 	say "There doesn't seem to be a coin slot on this side.";
 	rule fails.
 
-Check inserting a coin into the thin slot when the thin slot is part of a passable GUS Gate (this is the no need to pay twice rule):
+Check inserting a coin into the thin slot when the thin slot is part of a passable GUS-Gate (this is the no need to pay twice rule):
 	say "The gate tinkles musically, and the coin spit back out into your hand[first time]. It won't accept a new coin until someone has gone through it[only].";
 	rule fails.
 
-Check going through a blocked GUS Gate from a room that is not a GUS Train Platform (this is the who needs turnstiles when one has magic rule):
+Check going through a blocked GUS-Gate from a room that is not a GUS Train Platform (this is the who needs turnstiles when one has magic rule):
 	say "An abrupt buzzing noise sounds as you try to pass through the gate, and an invisible force blocks your way.";
 	stop the action.
 
-After going through a GUS Gate (called traversed gate) (this is the easily-available public transportation invites a casual attitude towards locomotion rule):
+After going through a GUS-Gate (called traversed gate) (this is the easily-available public transportation invites a casual attitude towards locomotion rule):
 	now every coin incorporated by traversed gate is off-stage;
 	say "You saunter through the open gate.";
 	continue the action.
@@ -1351,7 +1340,7 @@ After going through a GUS Gate (called traversed gate) (this is the easily-avail
 To discourage violence against gates:
 	say "Only the most anti-social vandal would dream of damaging public property like that."
 
-Instead of attacking a GUS Gate (called beleaguered gate) (this is the anti-vandalism PSA rule):
+Instead of attacking a GUS-Gate (called beleaguered gate) (this is the anti-vandalism PSA rule):
 	discourage violence against gates.
 
 Section - GUS Station
@@ -1363,7 +1352,7 @@ A GUS Station is a kind of room. A GUS Station has some text called stop name. A
 A GUS Station has some text called default description. The default description of a GUS Station is usually "You are standing at the entrance to the [stop name of the item described] Great Underground Subway (GUS) station. The train platform lies past the gate to the [platform placement of the item described], or stairs lead up into the city[transfer notice]."
 
 To say transfer notice:
-	let D be the direction of a random touchable GUS Gate from the location;
+	let D be the direction of a random touchable GUS-Gate from the location;
 	let G be the door D from the location;
 	let R be the other side of G;
 	if R is a topmost-level GUS Train Platform:
@@ -1388,7 +1377,7 @@ Definition: a direction is along-the-tracks if the room it from the location is 
 To decide which text is the platform label of (stop - a GUS Train Platform):
 	decide on the stop name of the antechamber of stop.
 
-The description of a GUS Train Platform is usually "You are standing in a long underground chamber. The [track side] side of the room contains a lowered set of train tracks. The tracks run [list of along-the-tracks directions] into[if the number of along-the-tracks direction is 1] a dark tunnel[else] dark tunnels[end if]. Along one wall, painted lettering reads '[platform label of the item described in upper case] STATION'[if the number of touchable GUS Gates is at least 1]. A short walkway leads [direction of a random touchable GUS Gate from the location] to a metal fence[else][end if][if the room down from the location is a GUS Train Platform]. There is also a stairway down here[end if][if the room up from the location is a GUS Train Platform]. A set of stairs leads up out of the gloom[end if][if a subway train proxy is at hand]. There is a large train car sitting on the tracks to the [track side][end if]."
+The description of a GUS Train Platform is usually "You are standing in a long underground chamber. The [track side] side of the room contains a lowered set of train tracks. The tracks run [list of along-the-tracks directions] into[if the number of along-the-tracks direction is 1] a dark tunnel[else] dark tunnels[end if]. Along one wall, painted lettering reads '[platform label of the item described in upper case] STATION'[if the number of touchable GUS-Gates is at least 1]. A short walkway leads [direction of a random touchable GUS-Gate from the location] to a metal fence[else][end if][if the room down from the location is a GUS Train Platform]. There is also a stairway down here[end if][if the room up from the location is a GUS Train Platform]. A set of stairs leads up out of the gloom[end if][if a subway train proxy is at hand]. There is a large train car sitting on the tracks to the [track side][end if]."
 
 A walkway and an underground tunnel are unimportant backdrops. Understand "dark" or "tunnels" as the underground tunnel.
 
@@ -1892,7 +1881,7 @@ The description of a trophy depression is "A small circular depression in the ce
 The carry out rule following, by being specific to trophy depressions, gets head-of-the-line treatment in rule processing. Forcing success of the rule means carry out examining rulebook will halt after just executing the standard examining rule.]
 
 Carry out examining a trophy depression (this is the suppress listing of trophy depression contents when examining rule):
-	consider the standard examining rule;
+	follow the standard examining rule;
 	rule succeeds. [Forces halt to carry out rulebook processing before moving on to standard examining rule.]
 
 Instead of putting something on a trophy depression (this is the convert putting things on to inserting things into for trophy depressions rule):
@@ -2085,17 +2074,13 @@ Chapter - New Phrases
 
 Section - Ending the game in death / victory
 
-[These are not really new phrases, but they are deprecated phrases in I7 6G60. If you are trying to compile this in a later version, uncommenting the following (from the suggested equivalent in WWI 9.4) may help.]
+[These phrases are no longer meaningful by default as of I7 6L02, so they are recreated here.]
 
-[
 To end the game in death:
 	end the story saying "You have died"
-]
 
-[
 To end the game in victory:
 	end the story finally saying "You have won"
-]
 
 Section - Saying something with an extra line break
 
@@ -2226,7 +2211,7 @@ This is the casting attempts always consume memorized spells rule:
 	remove the noun from memory. [See "Short-Term Retention" section for details on phrase.]
 
 Check casting a memorized spell (this is the trying to cast a temporarily-learned spell always uses it up rule):
-	consider the casting attempts always consume memorized spells rule;
+	follow the casting attempts always consume memorized spells rule;
 	continue the action.
 
 The trying to cast a temporarily-learned spell always uses it up rule is listed after the can't cast if not memorized rule in the check casting rules.
@@ -2234,7 +2219,7 @@ The trying to cast a temporarily-learned spell always uses it up rule is listed 
 [Note the need to specify "at an object" instead of "at something" so that the rule will be fired when trying something like ">frotz west". Otherwise, it won't apply, since a direction is not a thing.]
 
 Check casting a memorized spell at an object (this is the trying to cast a temporarily-learned spell at something always uses it up rule):
-	consider the casting attempts always consume memorized spells rule;
+	follow the casting attempts always consume memorized spells rule;
 	set pronouns from the second noun; [This ensures that the pronoun "it" will be set to the target of the noun instead of the spell after casting.]
 	continue the action.
 
@@ -2704,8 +2689,9 @@ Understand the command "attach" as something new. [by default this is a synonym 
 
 Joining it to is an action applying to one carried thing and one thing. Understand "join [something] with/to [something]" as joining it to. Understand the commands "connect" or "attach" as "join".
 
-A procedural rule:
-	if the current action is joining a rod to a rod, ignore the block joining rule.
+[This handy rule, of the type covered in WWI 19.5, replaces the only procedural used in the 6G60 version of SpirI7wrak.]
+
+The block joining rule does nothing if the noun is a rod and the second noun is a rod.
 
 Check joining it to (this is the block joining rule):
 	say "This doesn't seem terribly productive.";
@@ -2931,7 +2917,7 @@ After learning (this is the learning too many spells results in forgetting some 
 		if lost spell is nothing: [in case PC only knows one memorized spell]
 			now lost spell is the noun;
 		remove lost spell from memory;
-		consider the default report learning rule; [show normal learning message first]
+		follow the default report learning rule; [show normal learning message first]
 		say "[line break]A voice booms out: 'Do not try to exceed your powers, mortal!' [first time]Oops, Brother Joseph warned you about that. [only]You seem to have forgotten [if the lost spell is remembered by the short-term retention]an instance of [end if]the [lost spell] chant.";
 	otherwise:
 		continue the action.
@@ -3211,7 +3197,7 @@ Understand "answer [text] to [something]" as answering it that (with nouns rever
 The block answering rule is not listed in any rulebook.
 
 Report answering it that (this is the default report answering it that rule):
-	consider the block answering rule.
+	follow the block answering rule.
 
 Section - Asking It About (and Querying It About)
 
@@ -3270,7 +3256,7 @@ Section - Attacking
 The block attacking rule is not listed in any rulebook.
 
 Report attacking (this is the default attacking rule):
-	consider the block attacking rule.
+	follow the block attacking rule.
 
 Understand the command "kick" or "slap" or "smack" or "hammer" or "pound" or "slam" as "attack".
 
@@ -3407,8 +3393,6 @@ Check inserting something carried into a container (this is the can't fit things
 
 Section - Jumping
 
-The block jumping rule is not listed in the check jumping rulebook.
-
 Report jumping (this is the default report jumping rule):
 	say "You jump on the spot, fruitlessly."
 
@@ -3422,8 +3406,6 @@ Report jumping over (this is the default report jumping over rule):
 Section - Listening
 
 Understand "hear" as listening.
-
-The block listening rule is not listed in the check listening to rulebook.
 
 Report listening:
 	say "You hear nothing unexpected."
@@ -3532,8 +3514,6 @@ Section - Rubbing
 
 Understand the command "pet" as "rub".
 
-The block rubbing rule is not listed in the check rubbing rulebook.
-
 Report rubbing:
 	say "You achieve nothing by this."
 	
@@ -3581,14 +3561,14 @@ Report an actor showing something to:
 
 Section - Singing
 
-[This action is unblocked (at least from the perspective of the check rulebook layer) to facilitate the function of the alarm clock. (See "Alarm Clock")]
+[This action is no longer included by default in I7 6L38. It is recreated in basic form to facilitate the function of the alarm clock. (See "Alarm Clock")]
 
-The block singing rule is not listed in any rulebook.
+Singing is an action applying to nothing. Understand "sing" as singing.
 
 Understand the command "hum" as "sing".
 
 Report singing (this is the default report singing rule):
-	consider the block singing rule.
+	say "Your singing is legendary within the Order, and not in a good way."
 
 [An early playtester tried to sing specific things or ways, so...]
 
@@ -3599,38 +3579,30 @@ Check an actor singing specifically (this is the treat singing specifically as j
 
 Section - Smelling
 
-The block smelling rule is not listed in the check smelling rulebook.
-
 Report smelling:
 	say "You smell nothing unexpected."
 
 Section - Swearing Mildly
 
-[Note that I7 6G60 does not support the I6 standard behavior of reacting to a swear word followed by a topic, since the Standard Rules define the relevant action as applying to nothing. Although it would not be desirable to spend a lot of effort getting this atavistic behavior to work, it is relatively trivial.]
+[Note that, as of I7 6L02, swearing -- a type of language historically recognized by parser-based IF -- is not included by default. Although it would not be desirable to spend a lot of effort getting this atavistic behavior to work, it is relatively trivial.]
 
-Understand the command "curse" as "darn".
+Swearing mildly is an action applying to nothing. Understand "darn" as swearing mildly.
 
-Swearing mildly at is an action applying to one topic.
+Report swearing mildly (this is the default report swearing mildly rule):
+	say "Quite."
 
-Understand "bother [text]" as swearing mildly at.
+Swearing mildly at is an action applying to one topic. Understand "darn [text]" as swearing mildly at.
+
+Understand the commands "curse" or "bother" as "darn".
 
 Carry out swearing mildly at (this is the demote swearing mildly at something to swearing mildly in general rule):
 	try swearing mildly instead.
 
 Section - Swearing Obscenely (StrongSub)
 
-Understand the command "sod" as "damn".
+Swearing obscenely is an action applying to nothing. Understand "damn" as swearing obscenely.
 
-Swearing obscenely at is an action applying to one topic.
-
-Understand "damn [text]" as swearing obscenely at.
-
-Carry out swearing obscenely at (this is the demote swearing obscenely at something to swearing obscenely in general rule):
-	try swearing obscenely instead.
-
-[Note that the original logic generated a random number from 1 to 20 and killed the PC if it was above 15. This version maintains the same probability.]
-
-This is the gods don't appreciate swearing rule:
+Report swearing obscenely (this is the gods don't appreciate swearing rule):
 	say "[first time]Such language from a priest such as yourself! [only][run paragraph on]";
 	if a random chance of 3 in 4 succeeds:
 		say "The ground rumbles ominously.";
@@ -3638,7 +3610,16 @@ This is the gods don't appreciate swearing rule:
 		say "The ground rumbles, and a bolt of blue wrath from the Deities strikes you dead.";
 		end the game in death.
 
-The gods don't appreciate swearing rule is listed instead of the block swearing obscenely rule in the check swearing obscenely rules.
+Swearing obscenely at is an action applying to one topic.
+
+Understand "damn [text]" as swearing obscenely at.
+
+Understand the commands "sod" or "shit" or "fuck" as "damn".
+
+Carry out swearing obscenely at (this is the demote swearing obscenely at something to swearing obscenely in general rule):
+	try swearing obscenely instead.
+
+[Note that the original logic generated a random number from 1 to 20 and killed the PC if it was above 15. This version maintains the same probability.]
 
 Section - Switching the Story Transcript Off
 
@@ -3658,8 +3639,6 @@ Rule for deciding whether all includes something on a portable supporter while t
 
 Section - Tasting
 
-The block tasting rule is not listed in the check tasting rulebook.
-
 Report tasting:
 	say "You taste nothing unexpected."
 
@@ -3673,9 +3652,9 @@ The block throwing at rule is not listed in any rulebook.
 
 Report throwing it at (this is the default report throwing it at rule):
 	if the second noun is inanimate:
-		consider the futile to throw things at inanimate objects rule;
+		follow the futile to throw things at inanimate objects rule;
 	otherwise:
-		consider the block throwing at rule.
+		follow the block throwing at rule.
 
 Section - Touching
 
@@ -4281,7 +4260,7 @@ Section - Expectant Pause
 
 Note that this functionality did not exist in release 3/960606, so it and all associated responses are new to this implementation. For a core kind used here, see "Binary Reply" under "New Kinds".]
 
-Expectant Pause is a recurring scene. Expectant Pause has an binary reply called active reply. Expectant Pause has a person called question-poser. Expectant Pause has a truth state called restart flag. Expectant Pause has a time called expected completion time.
+Expectant Pause is a recurring scene. Expectant Pause has a binary reply called active reply. Expectant Pause has a person called question-poser. Expectant Pause has a truth state called restart flag. Expectant Pause has a time called expected completion time.
 
 To create an expectant pause for (question posed - a binary reply):
 	now the active reply of Expectant Pause is the question posed.
@@ -4309,10 +4288,10 @@ Instead of answering the question-poser of Expectant Pause that "yes" during Exp
 Instead of answering the question-poser of Expectant Pause that "no" during Expectant Pause (this is the reroute saying no to question-poser to just saying no during expectant pause rule):
 	try saying no instead.
 
-Instead of asking the the question-poser of Expectant Pause to try saying yes during Expectant Pause (this is the reroute asking question-poser to say yes to just saying yes during expectant pause rule):
+Instead of asking the question-poser of Expectant Pause to try saying yes during Expectant Pause (this is the reroute asking question-poser to try saying yes to just saying yes during expectant pause rule):
 	try saying yes instead.
 
-Instead of asking the the question-poser of Expectant Pause to try saying no during Expectant Pause (this is the reroute asking question-poser to say no to just saying no during expectant pause rule):
+Instead of asking the question-poser of Expectant Pause to try saying no during Expectant Pause (this is the reroute asking question-poser to say no to just saying no during expectant pause rule):
 	try saying no instead.
 
 Every turn when the restart flag of Expectant Pause is true during Expectant Pause (this is the disable restart flag for expectant pause if set rule):
@@ -4475,16 +4454,16 @@ This is the resolution of Coffee Quest in absentia rule:
 	if the Implementor is not recharged and the Implementor is not duped by decaf: [on way to get coffee or not started]
 		now the Implementor is seeking coffee;
 		now the Implementor is in the Strange Kitchen;
-		consider the coffee-making rules;
+		follow the coffee-making rules;
 	now the Implementor is in Strange Room; [on way back]
-	consider the Imp sleeps if coffee was sabotaged rule.
+	follow the Imp sleeps if coffee was sabotaged rule.
 
 When Coffee Quest ends (this is the tidy up the scene in Celestial Apartment at Coffee Quest's end rule):
 	if the player is not in Celestial Apartment:
 		follow the resolution of Coffee Quest in absentia rule.
 
 Every turn during Coffee Quest (this is the Coffee Quest scene drives coffee run rule):
-	consider the coffee run rules.
+	follow the coffee run rules.
 
 Section - Potentially Paradoxical scenes
 
@@ -4540,7 +4519,7 @@ Planting the Brown Rod Piece is a potentially paradoxical scene.
 
 Planting the Brown Rod Piece begins when the crystal sphere is at hand and the current action is time-travel triggering behavior and the player carries the brown rod piece.
 
-Planting the Brown Rod Piece ends when the portion of wall is finished and the current action is attacking the portion of wall.
+Planting the Brown Rod Piece ends when the portion-of-wall is finished and the current action is attacking the portion-of-wall.
 
 When Planting the Brown Rod Piece begins (this is the set the stage for planting the brown rod piece rule):
 	engage spell blocking;
@@ -4549,7 +4528,7 @@ When Planting the Brown Rod Piece begins (this is the set the stage for planting
 	try looking.
 
 When Planting the Brown Rod Piece ends (this is the brown rod piece planted successfully rule):
-	if the brown rod piece is not in the portion of wall: [extra safety check]
+	if the brown rod piece is not in the portion-of-wall: [extra safety check]
 		remove the brown rod piece from play;
 	say "The wall starts to glow a purple color, and you step back, to find your surroundings replaced by cold natural cave walls.";
 	now the player is in Mystical Cave.
@@ -4564,16 +4543,16 @@ To decide if no brick is handy:
 
 At the time when the workman arrives:
 	if no brick is handy:
-		now the portion of wall is finished well;
+		now the portion-of-wall is finished well;
 	otherwise if the thick brick is in Construction Site:
 		remove the thick brick from play;
-		now the portion of wall is finished well;
+		now the portion-of-wall is finished well;
 	otherwise if the dusty brick is in Construction Site:
 		remove the dusty brick from play;
-		now the portion of wall is finished poorly;
-	now the portion of wall is closed; [prevent ability to see contents of finished wall by examining it]
+		now the portion-of-wall is finished poorly;
+	now the portion-of-wall is closed; [prevent ability to see contents of finished wall by examining it]
 	if the location is Construction Site:
-		say "From behind some scaffolding, a construction worker appears. He walks to a part of the ditch and starts to make some finishing touches on part of a low wall. He finds a brick nearby and applies it to the wall with a good patch of mortar. [if the portion of wall is finished well]Brushing himself off, he walks off and is [else]He looks at the patch, somewhat unsatisfied, but then shrugs and walks off, [end if] soon out of sight.";
+		say "From behind some scaffolding, a construction worker appears. He walks to a part of the ditch and starts to make some finishing touches on part of a low wall. He finds a brick nearby and applies it to the wall with a good patch of mortar. [if the portion-of-wall is finished well]Brushing himself off, he walks off and is [else]He looks at the patch, somewhat unsatisfied, but then shrugs and walks off, [end if] soon out of sight.";
 	otherwise if the location is Near Construction Site:
 		say "You hear some brief construction-like noises from the east.";
 	otherwise: [shouldn't be a third option possible, but...]
@@ -5315,7 +5294,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the Morgan the Ranger default life behavior rule.
 
 Persuasion rule for asking Morgan the Ranger to try doing something (this is the reroute understood orders to Morgan to generic life response rule):
-	consider the Morgan the Ranger default life behavior rule;
+	follow the Morgan the Ranger default life behavior rule;
 	rule fails.
 
 After greeting Morgan the Ranger (this is the Morgan is the only one who notices seeing the PC twice rule):
@@ -5424,7 +5403,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the Frobar default life behavior rule.
 
 Persuasion rule for asking Frobar to try doing something (this is the reroute understood orders to Frobar to generic life response rule):
-	consider the Frobar default life behavior rule;
+	follow the Frobar default life behavior rule;
 	rule fails.
 
 After yawning when Frobar is at hand (this is the Frobar does not like yawners rule):
@@ -5617,7 +5596,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the Thief default life behavior rule.
 
 Persuasion rule for asking the Thief to try doing something (this is the reroute understood orders to Thief to generic life response rule):
-	consider the Thief default life behavior rule;
+	follow the Thief default life behavior rule;
 	rule fails.
 
 After greeting the Thief (this is the a terse nod is better than a slit throat rule):
@@ -5726,7 +5705,7 @@ Instead of swimming in Swank Waterfront (this is the waterfront is not a good pl
 Instead of entering or swimming in the seawater in Swank Waterfront (this is the reroute entering the seawater in waterfront to swimming rule):
 	try swimming in the location instead.
 
-Instead of doing something in Swank Waterfront when the noun is the seawater and the action requires a touchable noun (this is the water can't be reached from waterfront rule):
+Instead of doing something when the location is Swank Waterfront and the noun is the seawater and the action requires a touchable noun (this is the water can't be reached from waterfront rule):
 	say "The water is far out of reach below you. It's a wonderful view from here, though."
 
 Section - Viewing Telescope (telescope)
@@ -5738,7 +5717,7 @@ Also note that this object is defined as transparent in the original source code
 A viewing telescope is a closed openable transparent container in Swank Waterfront. "There's a viewing telescope here, attached to the railing[if the item described is open]. One of the lenses seems loose. Inside it, you see [a list of things in the viewing telescope][end if]." It is fixed in place. The description of the viewing telescope is "A nice tourist toy. Perfect for getting a good view." The carrying capacity of the viewing telescope is 1. The size of the telescope is 10.
 
 Carry out examining the viewing telescope when the viewing telescope is closed (this is the suppress listing of telescope contents when examining the closed telescope rule):
-	consider the standard examining rule;
+	follow the standard examining rule;
 	rule succeeds. [Forces halt to carry out rulebook processing before moving on to standard examining rule.]
 
 After opening the viewing telescope (this is the opening the telescope reveals contents rule):
@@ -5875,7 +5854,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the Christmas Tree Monster default life behavior rule.
 
 Persuasion rule for asking the Christmas Tree Monster to try doing something (this is the reroute understood orders to Christmas Tree Monster to generic life response rule):
-	consider the Christmas Tree Monster default life behavior rule;
+	follow the Christmas Tree Monster default life behavior rule;
 	rule fails.
 
 Check the player cutting the Christmas tree monster when the player does not bear the hedge clippers (this is the Christmas tree monster cutting rule):
@@ -6175,7 +6154,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the barbarians default life behavior rule.
 
 Persuasion rule for asking the barbarians to try doing something (this is the reroute understood orders to barbarians to generic life response rule):
-	consider the barbarians default life behavior rule;
+	follow the barbarians default life behavior rule;
 	rule fails.
 
 After listening to the barbarians:
@@ -6489,7 +6468,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the burly man default life behavior rule.
 
 Persuasion rule for asking the burly man to try doing something (this is the reroute understood orders to burly man to generic life response rule):
-	consider the burly man default life behavior rule;
+	follow the burly man default life behavior rule;
 	rule fails.
 
 Instead of going from Lower Seats to Near Locker Room when the burly man is at hand and the burly man is not awe-stuck (this is the burly man feels very entitled rule), say "The burly man jumps out of his seat as you try to pass. 'Hey buddy, I'm saving those seats.' He points to an entire row of seats below you. 'I've been waiting all season, and I don't want an obstructed view, so look for somewhere else to sit.' He sits back in his seat."
@@ -6599,7 +6578,7 @@ Persuasion rule for asking the tough-looking coach to try giving the champion's 
 	persuasion succeeds.
 
 Persuasion rule for asking the tough-looking coach to try doing something (this is the reroute understood orders to coach to generic life response rule):
-	consider the coach default life behavior rule;
+	follow the coach default life behavior rule;
 	rule fails.
 
 [This is a tough match early in the game, so this implementation allows players a chance to back out instead of proceeding directly to the fight when they are "low-level" or hurt.]
@@ -6702,7 +6681,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the referee default life behavior rule.
 
 Persuasion rule for asking the referee to try doing something (this is the reroute understood orders to referee to generic life response rule):
-	consider the referee default life behavior rule;
+	follow the referee default life behavior rule;
 	rule fails.
 
 [The author's D&D sensibilities recoil at the idea of any golem other than the iron golem spewing poison gas, so the method of cheating is adjusted for the other golems in this implementation.]
@@ -6908,7 +6887,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the gate crowd default life behavior rule.
 
 Persuasion rule for asking the well-dressed people to try doing something (this is the reroute understood orders to gate crowd to generic life response rule):
-	consider the gate crowd default life behavior rule;
+	follow the gate crowd default life behavior rule;
 	rule fails.
 
 After casting espnis at the well-dressed people (this is the can't bore your way through the line rule), say "A few people doze off as you canvass the line. They are quickly replaced by others."
@@ -7026,18 +7005,18 @@ This is the cake evaluation rule:
 			say "and chews for a bit. His eyes widen, and he spits the cake out. 'Hey, pal, I taste [ingredient] in this so-called cake of yours! Grues could've done a better job than this!'";
 			rule fails;
 	[second check that it was baked properly]
-	if the baking level of the cake is done and the folding level of the cake is properly folded:
+	if the cake is done and the cake is properly folded:
 		do nothing;
 	otherwise:
 		say  "and chews for a bit. He frowns. 'Sorry, pal -- this doesn't pass inspection. ";
-		if the baking level of the cake is underdone:
+		if the cake is underdone:
 			say "It could stand some more cooking.'";
-		else if baking level of the cake is overdone:
+		else if cake is overdone:
 			create an expectant pause with the guard asking the guard's challenge about burning cake;
 			say "Did ya burn it or something?'";
-		else if the folding level of the cake is underfolded:
+		else if the cake is underfolded:
 			say "It'd make an okay pancake, though.'";
-		else if the folding level of the cake is overfolded:
+		else if the cake is overfolded:
 			say "It's hard as a rock!'";
 		else:
 			say "I can't quite put my finger on it, but it's just not right.";
@@ -7067,7 +7046,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the guard default life behavior rule.
 
 Persuasion rule for asking the guard to try doing something (this is the reroute understood orders to guard to generic life response rule):
-	consider the guard default life behavior rule;
+	follow the guard default life behavior rule;
 	rule fails.
 
 After casting a spell at the guard (this is the palace guard interrupts casting rule):
@@ -7321,7 +7300,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the audience default life behavior rule.
 
 Persuasion rule for asking the important-looking people to try doing something (this is the reroute understood orders to audience to generic life response rule):
-	consider the audience default life behavior rule;
+	follow the audience default life behavior rule;
 	rule fails.
 
 After casting foblub at the important-looking people (this is the Audience Hall dignitaries are already glued to their seats rule):
@@ -7391,7 +7370,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the magistrate default life behavior rule.
 
 Persuasion rule for asking the magistrate to try doing something (this is the reroute understood orders to magistrate to generic life response rule):
-	consider the magistrate default life behavior rule;
+	follow the magistrate default life behavior rule;
 	rule fails.
 
 [Note: The original code's logic for this was a little different, it would generate a random number then check whether Sydney was present then route to one of two blocks, each with a response for a single number. This implementation will mimic the player-observable behavior of the original code, but it is structured differently, and it is not as flexible for adding new responses.]
@@ -7485,7 +7464,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the Sydney default life behavior rule.
 
 Persuasion rule for asking the young child to try doing something (this is the reroute understood orders to Sydney to generic life response rule):
-	consider the Sydney default life behavior rule;
+	follow the Sydney default life behavior rule;
 	rule fails.
 
 After casting ledak at the young child (this is the you say impostor I say eh close enough rule):
@@ -7517,9 +7496,9 @@ A room called Royal Bedroom is up from Palace Entrance Hall. "This might have on
 
 Section - Wooden Cabinet (Palace_cabinet)
 
-[This object made use of the 'general' property in the original code. It is replaced by a new flag property with the more descriptive label 'waxy' here. Also note that declaring a container locked automatically makes it openable and lockable in I7, so these attributes are left implicit.]
+[This object made use of the 'general' property in the original code. It is replaced by a new flag property with the more descriptive label 'wax-covered' here. Also note that declaring a container locked automatically makes it openable and lockable in I7, so these attributes are left implicit.]
 
-A fixed in place locked container called a wooden cabinet is in Royal Bedroom.  The initial appearance of the wooden cabinet is "[wooden cabinet appearance]". The wooden cabinet can be waxy. The size of the wooden cabinet is 20. The carrying capacity of the wooden cabinet is 20. The description of the wooden cabinet is "A rather new-looking wooden cabinet[if the wooden cabinet is waxy], with a bit of waxy build-up all over it[end if]." The wooden cabinet is unlocked by the shiny key. The wooden cabinet is linewriter-abusing.
+A fixed in place locked container called a wooden cabinet is in Royal Bedroom.  The initial appearance of the wooden cabinet is "[wooden cabinet appearance]". The wooden cabinet can be wax-covered. The size of the wooden cabinet is 20. The carrying capacity of the wooden cabinet is 20. The description of the wooden cabinet is "A rather new-looking wooden cabinet[if the wooden cabinet is wax-covered], with a bit of waxy build-up all over it[end if]." The wooden cabinet is unlocked by the shiny key. The wooden cabinet is linewriter-abusing.
 
 To say wooden cabinet appearance:
 	if the wooden cabinet is closed:
@@ -7532,12 +7511,12 @@ To say wooden cabinet appearance:
 			say "It contains:[paragraph break][Spiritwrak-style contents list for the wooden cabinet]".
 
 After casting egdelp at the wooden cabinet (this is the sometimes adventurers make life tough on the polishing staff rule):
-	now the cabinet is waxy;
+	now the cabinet is wax-covered;
 	say "The cabinet is covered in waxy build-up."
 
 Instead of opening the unlocked closed wooden cabinet (this is the sometimes you need more than a key rule):
 	say "You give the cabinet a good tug";
-	if the wooden cabinet is not waxy:
+	if the wooden cabinet is not wax-covered:
 		say ", but the cabinet doors barely budge. The new-looking wood seems to be rather tightly fitted.";
 	otherwise:
 		now the cabinet is open;
@@ -7577,10 +7556,10 @@ To say prison cell appearance:
 
 [A side note: It was quite puzzling that the logic in the original source code would return 2 in the response to the following command -- an unusual return value for an action in I6. After some searching through the DM4, it seems like this is probably related to the various return codes for attempts to go while in a container that are shown on p. 128. The value of 2 means that the I6 library should block the action but not print any message about the failure since the routine already should have done so.] 
 
-Instead of going south while in the prison cell (this is the going south from the prison cell is interpreted as exiting rule):
+Instead of going south while the player is in the prison cell (this is the going south from the prison cell is interpreted as exiting rule):
 	try exiting instead.
 
-Instead of going outside while in the prison cell (this is the going out from the prison cell is interpreted as exiting rule):
+Instead of going outside while the player is in the prison cell (this is the going out from the prison cell is interpreted as exiting rule):
 	try exiting instead.
 
 [Note the slight change in the following logic, as compared to the original, to use lockability as a flag that the cell has been rusted.]
@@ -7641,13 +7620,13 @@ Before going to a maze room (called the entered room) (this is the make sure bea
 [	say "Moving beams to closest side of path...";]
 	repeat with checked niche running through maze niches in the entered room:
 [		say "[line break]  niche = [checked niche]";]
-		let checked path be a random potential maze path connected to checked niche;
+		let checked path be a random potential-maze-path connected to checked niche;
 		if checked path is nothing:
 [			say "[line break]    path = NOT FOUND";]
 			do nothing;
 		otherwise:
 [			say "[line break]    path = [checked path]";]
-			let placed beam be a random maze beam that traverses checked path;
+			let placed beam be a random maze-beam that traverses checked path;
 			if placed beam is nothing:
 [				say "[line break]      no beam found to move";]
 				do nothing;
@@ -7667,14 +7646,14 @@ Section - Potential Maze Path Kind and Rules
 
 This approach helps a bit with the mapping function for the World display in the Index, but it doesn't really simplify things as much as I had hoped when I first thought it up.]
 
-A potential maze path is a kind of door. A potential maze path is always locked and undescribed and improper-named and privately-named. A potential maze path is usually closed. A potential maze path has some text called internal name. [for debugging] The internal name of a potential maze path is usually "*undefined*".
+A potential-maze-path is a kind of door. A potential-maze-path is always locked and undescribed and improper-named and privately-named. A potential-maze-path is usually closed. A potential-maze-path has some text called internal name. [for debugging] The internal name of a potential-maze-path is usually "*undefined*".
 
 The can't go through undescribed doors rule is not listed in the check going rulebook. [Hopefully, removing this rule won't cause any craziness; the use of the door kind for maze paths breaks the assumption motivating this standard rule.]
 
 Every turn (this is the potential maze paths are open only when traversed by potential beam rule):
 [	say "Checking maze path traversibility...";]
-	repeat with checked path running through potential maze paths:
-		if checked path is traversed by a maze beam:
+	repeat with checked path running through potential-maze-paths:
+		if checked path is traversed by a maze-beam:
 [			say "[line break]  [checked path] is traversable.";]
 			now checked path is open;
 		otherwise:
@@ -7711,13 +7690,13 @@ When play begins (this is the initialize maze niches rule):
 Instead of taking a maze niche (this is the niches aren't really things to take rule):
 	say "The niche, being more defined by its absence than presence, cannot be taken."
 
-Instead of inserting something that is not a maze beam into a maze niche (this is the restrict maze niche contents to maze beams rule):
+Instead of inserting something that is not a maze-beam into a maze niche (this is the restrict maze niche contents to maze beams rule):
 	say "That's not going to stay in the niche."
 
-Instead of inserting a maze beam into a maze niche that is not empty (this is the only one maze beam per maze niche allowed rule):
+Instead of inserting a maze-beam into a maze niche that is not empty (this is the only one maze beam per maze niche allowed rule):
 	say "The niche space is currently full."
 
-After inserting a maze beam into a maze niche (this is the describe placing a maze beam into a maze niche rule):
+After inserting a maze-beam into a maze niche (this is the describe placing a maze beam into a maze niche rule):
 	say "You carefully place one end of the beam in the niche and extend the other end into the darkness[one of]. You feel something solid support the far end[or]until slides into place[stopping]."
 
 Section - Maze Beam Kind and Rules (wood_beam_class)
@@ -7734,26 +7713,26 @@ Also note that the original source code declared one of the limited number of I6
 
 Finally, note that the size of things of this kind has been modified to 35, down from the original source code's value of 50.]
 
-A maze beam is a kind of thing. The printed name of a maze beam is "[wood type] beam". The printed plural name of a maze beam is "[wood type] beams". A maze beam is always improper-named and privately-named. A maze beam has a wood type. A maze beam has a number called remaining uses. The remaining uses of a maze beam is usually -1. A maze beam has some text called internal name. [for debugging] The internal name of a maze beam is usually "*undefined*". The description of a maze beam is "A long, thin [wood type]-wood beam." The size of a maze beam is usually 35. [must be small enough to fit into a maze niche] Understand "wood beam" or "wooden beam" or "beam" as a maze beam. Understand "wood beams" or "wooden beams" or "beams" as the plural of maze beam. Understand the wood type property as describing a maze beam.
+A maze-beam is a kind of thing. The printed name of a maze-beam is "[wood type] beam". The printed plural name of a maze-beam is "[wood type] beams". A maze-beam is always improper-named and privately-named. A maze-beam has a wood type. A maze-beam has a number called remaining uses. The remaining uses of a maze-beam is usually -1. A maze-beam has some text called internal name. [for debugging] The internal name of a maze-beam is usually "*undefined*". The description of a maze-beam is "A long, thin [wood type]-wood beam." The size of a maze-beam is usually 35. [must be small enough to fit into a maze niche] Understand "wood beam" or "wooden beam" or "beam" as a maze-beam. Understand "wood beams" or "wooden beams" or "beams" as the plural of maze-beam. Understand the wood type property as describing a maze-beam.
 
 [IMPDO - figure out how to get a prompt for taking a beam when multiple identical beams are available; right now just defaults to "first" (leftmost?) in tree. Can create an understand line that allows a property from another object (e.g. edge of the containing niche) as referring to a maze beam?]
 
 When play begins (this is the initialize maze beams rule):
 [	say "Initializing maze beams: ";]
-	repeat with item running through maze beams:
+	repeat with item running through maze-beams:
 		if the wood type of item is:
 			-- ebony: now the remaining uses of item is 2;
 			-- pine: now the remaining uses of item is 1;
 			-- balsa: now the remaining uses of item is 0; [breaks on first use]
 		if item is in a maze niche (called containing niche):
-			let path occupied be a random potential maze path connected to the containing niche; [should only be one]
+			let path occupied be a random potential-maze-path connected to the containing niche; [should only be one]
 			now item traverses the path occupied.
-[		say "[line break]     [item] [internal name of item] set to [remaining uses of item] uses, traversing path [list of potential maze paths traversed by item] between [list of maze niches connected by potential maze path traversed by item]".]
+[		say "[line break]     [item] [internal name of item] set to [remaining uses of item] uses, traversing path [list of potential-maze-paths traversed by item] between [list of maze niches connected by potential-maze-path traversed by item]".]
 
 [The idea of the following is to alert players to some syntax that can be helpful in the maze. Its function depends on a new activity defined to mark out the boundaries of a removing it from action. See the section for "Removing It From" for details.]
 
-Definition: a maze beam (called target) is duplicative rather than unique:
-	repeat with checked timber running through touchable maze beams that are not target:
+Definition: a maze-beam (called target) is duplicative rather than unique:
+	repeat with checked timber running through touchable maze-beams that are not target:
 		if the wood type of checked timber is the wood type of target:
 			decide yes;
 	decide no.
@@ -7763,11 +7742,11 @@ Beam specificity advisory is a truth state that varies.
 When play begins (this is the force beam specificity advisory flag to false rule):
 	now beam specificity advisory is false.
 
-Before taking a duplicative maze beam when beam specificity advisory is false and the multi-removing activity is not going on (this is the advise about taking specific beams when applicable rule):
+Before taking a duplicative maze-beam when beam specificity advisory is false and the multi-removing activity is not going on (this is the advise about taking specific beams when applicable rule):
 	say "[italic type](Since every [noun] looks the same, you just grab [if the holder of the noun is the location]one from the floor[else]the one in [the holder of the noun][end if]. To be specific about a beam, use a command like:[roman type] >TAKE PINE BEAM FROM NORTHERN NICHE[italic type] or[roman type] >GET BEAM LOCATED IN EASTERN NICHE[italic type] or [roman type] >PUT PINE BEAM WITHIN EASTERN NICHE INTO SOUTHERN NICHE[italic type]. Also, the words 'held' and 'carried' can be used to refer to an item inventory, and 'here' or 'discarded' can be used to refer to an item in the same location as you are but not in or on anything else.)[roman type][paragraph break]";
 	now beam specificity advisory is true.
 
-After casting egdelp at a maze beam (this is the beam-waxing rule):
+After casting egdelp at a maze-beam (this is the beam-waxing rule):
 	if the location is On-Beam and the second noun is the supporting beam:
 		say "[The second noun] is covered in a waxy film! Your feet immediately lose their purchase on it.";
 		now suppress every turn breakage check is true; [prevent double application of breakage check logic]
@@ -7775,25 +7754,25 @@ After casting egdelp at a maze beam (this is the beam-waxing rule):
 	otherwise:
 		say "[The second noun] is covered in a waxy film! Thinking better of this, you hastily wipe off the offending build-up."
 
-After casting huncho at a maze beam (this is the plane shifting beams up rule):
+After casting huncho at a maze-beam (this is the plane shifting beams up rule):
 	say "In a blaze of actinic light, [the second noun] vanishes!";
 	if the location is On-Beam and the second noun is the supporting beam:
 		now suppress every turn breakage check is true; [prevent double application of breakage check logic]
 		fall in Barsap's Gambit.
 
-After casting luncho at a maze beam (this is the plane shifting beams down rule):
+After casting luncho at a maze-beam (this is the plane shifting beams down rule):
 	say "With a puff of dark smoke, [the second noun] disappears!";
 	if the location is On-Beam and the second noun is the supporting beam:
 		now suppress every turn breakage check is true; [prevent double application of breakage check logic]
 		fall in Barsap's Gambit.
 
 Every turn while in Barsap's Gambit (this is the update maze beam traversal relation rule):
-	repeat with checked beam running through on-stage maze beams:
+	repeat with checked beam running through on-stage maze-beams:
 		if checked beam traverses nothing and checked beam is in a maze niche (called containing niche):
-			let path occupied be a random potential maze path connected to the containing niche; [should only be one]
+			let path occupied be a random potential-maze-path connected to the containing niche; [should only be one]
 			now checked beam traverses the path occupied;
 [			say " ([checked beam] now traversing [path occupied]) ";]
-		otherwise if checked beam traverses a potential maze path and checked beam is not in a maze niche and checked beam is not in On-Beam:
+		otherwise if checked beam traverses a potential-maze-path and checked beam is not in a maze niche and checked beam is not in On-Beam:
 [			say  "  (resetting [checked beam] to traverse nothing)";]
 			now checked beam traverses nothing.
 
@@ -7802,15 +7781,15 @@ Chapter - Special Purpose Relations
 
 Section - Underlying
 
-Underlying relates one potential maze path to one potential maze path. The verb to underlie (it underlies, they underlie, it is underlain, it is underlying) implies the underlying relation. [Note: synonymous phrase "to be below" is unavailable due to conflict with current version of standard rules.]
+Underlying relates one potential-maze-path to one potential-maze-path. The verb to underlie (it underlies, they underlie, it is underlain, it is underlying) implies the underlying relation. [Note: synonymous phrase "to be below" is unavailable due to conflict with current version of standard rules.]
 
 Section - Connecting
 
-Connecting relates one potential maze path to various maze niches. The verb to connect (he connects, they connect, he connected, it is connected) implies the connecting relation. The verb to be connected to implies the connecting relation.
+Connecting relates one potential-maze-path to various maze niches. The verb to connect (he connects, they connect, he connected, it is connected) implies the connecting relation. The verb to be connected to implies the connecting relation.
 
 Section - Traversing
 
-Traversing relates one maze beam to one potential maze path. The verb to traverse (it traverses, they traverse, it is traversed, it is traversing) implies the traversing relation.
+Traversing relates one maze-beam to one potential-maze-path. The verb to traverse (it traverses, they traverse, it is traversed, it is traversing) implies the traversing relation.
 
 
 Chapter - On-Beam Room (GAMBIT_W1, GAMBIT_W2, GAMBIT_W21, GAMBIT_W22, GAMBIT_W31, GAMBIT_W32)
@@ -7821,15 +7800,15 @@ Note that two of the global variables declared in the original source code, WN_T
 
 Also note that the GAMBIT_W31 and GAMBIT_W32 locations made use of the I6 'general' attribute to track whether the amulet's warning flash message had been shown there. Logic in each location checked the other's state to ensure that the message was shown only once. It would have been preferable to use I7's built-in state tracking mechanisms to fulfill the same role, but, due to the mutable nature of this room's location, this did not seem possible. Here, the "scried" property of the fire spirit is used to track the first amulet warning.]
 
-There is a room called On-Beam in Barsap's Gambit. On-Beam has a potential maze path called path being traveled. On-Beam has a maze level called level. The printed name of On-Beam is "Balancing on [a supporting beam]...". The description of On-Beam is "You're walking along a very narrow [supporting beam] that runs [list of valid directions] into darkness. [if level of On-Beam is first]Below[else if level of On-Beam is second]Both above and below[else]Above[end if], you can see the dark silhouette of a network of beams and floating cubes. From [if level of On-Beam is first]much farther below[else if level of On-Beam is second]farther below[else]below[end if] comes a [if level of On-Beam is first]faint [else if level of On-Beam is second]dull [else][end if]red glow." Some darkness is an unimportant mass-nouned backdrop in On-Beam. A network of beams, a dark silhouette, some floating cubes, and a dull red glow are unimportant distant views in On-Beam.
+There is a room called On-Beam in Barsap's Gambit. On-Beam has a potential-maze-path called path being traveled. On-Beam has a maze level called level. The printed name of On-Beam is "Balancing on [a supporting beam]...". The description of On-Beam is "You're walking along a very narrow [supporting beam] that runs [list of valid directions] into darkness. [if level of On-Beam is first]Below[else if level of On-Beam is second]Both above and below[else]Above[end if], you can see the dark silhouette of a network of beams and floating cubes. From [if level of On-Beam is first]much farther below[else if level of On-Beam is second]farther below[else]below[end if] comes a [if level of On-Beam is first]faint [else if level of On-Beam is second]dull [else][end if]red glow." Some darkness is an unimportant mass-nouned backdrop in On-Beam. A network of beams, a dark silhouette, some floating cubes, and a dull red glow are unimportant distant views in On-Beam.
 
-To decide which maze beam is the supporting beam:
-	let perch be a random maze beam traversing path being traveled of On-Beam;
+To decide which maze-beam is the supporting beam:
+	let perch be a random maze-beam traversing path being traveled of On-Beam;
 	if perch is not nothing:
 		decide on perch;
 	else: [presumably trying to print the room name while not in it, or an unexpected state due to programming error]
 		say "(oops, substituting default) [run paragraph on]";
-		decide on default value of maze beam.
+		decide on default value of maze-beam.
 
 Instead of going nowhere in On-Beam when the noun is a cardinal direction (this is the count going wrong direction as deliberately stepping off beam rule):
 	say "Trying not to think too hard about what you are doing, you step off the beam.";
@@ -7848,24 +7827,24 @@ Instead of jumping in On-Beam (this is the but you have so much to live for such
 
 Instead of dropping something in On-Beam (this is the Barsap's Gambit is cruel enough without destroying things rule), say "[one of]Although Brother Afgencapp's lessons on navigating mazes spring to mind, your intuition tells you that d[or]D[stopping]ropping [the noun] here would probably result in losing both [object pronoun of the noun] and your balance."
 
-Instead of taking or cutting a maze beam not enclosed by the player while in On-Beam (this is the can't deliberately remove the beam we're pretending player is on rule):
+Instead of taking or cutting a maze-beam not enclosed by the player while in On-Beam (this is the can't deliberately remove the beam we're pretending player is on rule):
 	say "You rethink that idea immediately."
 
-Instead looking under a maze beam not enclosed by the player while in On-Beam (this is the can't resist a little pun rule):
+Instead looking under a maze-beam not enclosed by the player while in On-Beam (this is the can't resist a little pun rule):
 	say "The yawning abyss beneath you leaves plenty of room for terror."
 
-Instead of examining or turning or searching or rubbing or attacking or pushing or pulling a maze beam not enclosed by the player while in On-Beam (this is the interaction with stood-upon beam is limited rule):
+Instead of examining or turning or searching or rubbing or attacking or pushing or pulling a maze-beam not enclosed by the player while in On-Beam (this is the interaction with stood-upon beam is limited rule):
 	say "Perhaps this is not the best moment to try that."
 
 Instead of taking something not enclosed by the player while in On-Beam (this is the can't take anything else in On-Beam rule):
 	say "Other than what you have on your person, the beam you're on is the only thing within reach."
 
-Before going through an open potential maze path (called intended path) when the player is not gravity-resistant (this is the no beam can support the PC's full weight rule):
-	let checked beam be a random maze beam traversing the intended path;
+Before going through an open potential-maze-path (called intended path) when the player is not gravity-resistant (this is the no beam can support the PC's full weight rule):
+	let checked beam be a random maze-beam traversing the intended path;
 	if checked beam is not nothing:
 		now the remaining uses of the checked beam is zero.
 
-Before going through a potential maze path (called intended path) (this is the prepare the On-Beam Room before entering potential maze paths rule):
+Before going through a potential-maze-path (called intended path) (this is the prepare the On-Beam Room before entering potential maze paths rule):
 	clear any beam from On-Beam;
 	now On-Beam is not visited; [Note: original code did this -- to help give the illusion that it's really several rooms?]
 [	say "[line break]Preparing On-Beam room...";]
@@ -7880,7 +7859,7 @@ Before going through a potential maze path (called intended path) (this is the p
 	change the opposite of side of near niche exit of On-Beam to the location; [if player goes back]
 	change the opposite of side of far niche exit of On-Beam to the location of far niche; [if player goes forward]
 	now the path being traveled of On-Beam is the intended path;
-	let relocated beam be a random maze beam traversing the intended path;
+	let relocated beam be a random maze-beam traversing the intended path;
 [	say "[line break]  relocated beam = [relocated beam] [internal name of relocated beam]";]
 	now the relocated beam is in On-Beam. [will be moved again on exit at either end]
 [	say "[line break]On-Beam is prepped!"]
@@ -7891,7 +7870,7 @@ To reset On-Beam exits:
 	repeat with checked side running through directions:
 		change the checked side exit of On-Beam to nothing.
 
-Before going through a closed potential maze path (this is the can't traverse paths without beams rule):
+Before going through a closed potential-maze-path (this is the can't traverse paths without beams rule):
 	if the player is not gravity-resistant:
 		say "The vast empty space in that direction dissuades you.";
 		stop the action;
@@ -7899,10 +7878,10 @@ Before going through a closed potential maze path (this is the can't traverse pa
 		say "You decide to put [italic type]feeyuk[roman type] to the test and resolutely step over the edge.";
 		fall in Barsap's Gambit.
 
-Instead of going through an open potential maze path (this is the On-Beam Room is between maze rooms rule):
+Instead of going through an open potential-maze-path (this is the On-Beam Room is between maze rooms rule):
 	move the player to On-Beam.
 
-Rule for writing a paragraph about a maze beam (called beam stood upon) traversing the path being traveled of On-Beam while in On-Beam (this is the convey idea that player is actually on the beam rule):
+Rule for writing a paragraph about a maze-beam (called beam stood upon) traversing the path being traveled of On-Beam while in On-Beam (this is the convey idea that player is actually on the beam rule):
 	say "The minuscule width of [the beam stood upon] beneath your feet leaves little room for error."
 
 To decide whether (D - a door) connects to (R - a room):
@@ -7929,7 +7908,7 @@ Every turn while the location is On-Beam (this is the check for beam breakage ru
 		now suppress every turn breakage check is false;
 		rule fails; [stop rule processing without halting every turn rulebook processing]
 	otherwise:
-		let tested beam be a random maze beam in the location not enclosed by the player; [should always be only one]
+		let tested beam be a random maze-beam in the location not enclosed by the player; [should always be only one]
 		if the remaining uses of the tested beam is:
 			-- 2:
 				decrement the remaining uses of the tested beam;
@@ -7947,14 +7926,14 @@ To fall in Barsap's Gambit:
 
 [IMPDO - Generalize to cover jumping from beam or cube, going over non-bridged edges of cube, etc.?]
 
-Falling in Barsap's Gambit is a rulebook. The falling in Barsap's Gambit rulebook has a maze level called the level fallen from. The falling in Barsap's Gambit rulebook has a potential maze path called the path below. The falling in Barsap's Gambit rulebook has a maze beam called landing site.
+Falling in Barsap's Gambit is a rulebook. The falling in Barsap's Gambit rulebook has a maze level called the level fallen from. The falling in Barsap's Gambit rulebook has a potential-maze-path called the path below. The falling in Barsap's Gambit rulebook has a maze-beam called landing site.
 
 First falling in Barsap's Gambit (this is the housekeeping before the fall rule):
 	now the level fallen from is the level of the location;
 	if the location is On-Beam:
 		clear any beam from On-Beam;
-		now the path below is a random potential maze path underlying the path being traveled of On-Beam;
-		now landing site is a random maze beam traversing the path below.
+		now the path below is a random potential-maze-path underlying the path being traveled of On-Beam;
+		now landing site is a random maze-beam traversing the path below.
 
 Falling in Barsap's Gambit when the player is not gravity-resistant (this is the without gravity resistance the end is quick rule):
 	say "You plummet quickly through the air, ";
@@ -7979,7 +7958,8 @@ Falling in Barsap's Gambit when the player is gravity-resistant and the location
 		end the game in death;
 	otherwise: [falling from top or middle layers]
 		say "At first you see nothing but the red glare below, but then you see you are drifting down towards another network of floating cubes and beams. [run paragraph on]";
-		let landing site be a random maze beam traversing the potential maze path underlying the path being traveled of On-Beam;
+		let departure site be a random potential-maze-path underlying the path being traveled of On-Beam;
+		let landing site be a random maze-beam traversing departure site;
 		if landing site is nothing:
 			say "You pass between two giant floating cubes, similar to the ones you just left. Sadly, no wooden beam seems to connect these particular cubes, and you continue falling [run paragraph on]";
 			follow the fall further in Barsap's Gambit rule.
@@ -8001,7 +7981,7 @@ Falling in Barsap's Gambit (this is the fall further in Barsap's Gambit rule):
 	end the game in death.
 
 To clear any beam from On-Beam:
-	let abandoned beam be a random maze beam in On-Beam;
+	let abandoned beam be a random maze-beam in On-Beam;
 	if abandoned beam is not nothing:
 		let niche-returned-to be a random maze niche connected by the path being traveled of On-Beam;
 		now abandoned beam is in niche-returned-to.
@@ -8011,8 +7991,8 @@ To reset On-Beam when landing safely:
 	now On-Beam is not visited;
 	now the level of On-Beam is the maze level after the level of On-Beam;
 [	say "[line break]  current level set to [level of On-Beam]";]
-	let new path be a random potential maze path underlying the path being traveled of On-Beam;
-	let new bridge be a random maze beam traversing new path;
+	let new path be a random potential-maze-path underlying the path being traveled of On-Beam;
+	let new bridge be a random maze-beam traversing new path;
 [	say "[line break]  new bridge = [new bridge] [internal name of new bridge]";]
 	let first niche be a random maze niche connected by new path; [start with either one]
 [	say "[line break]  first niche = [first niche] / side = [side of first niche]";]
@@ -8044,8 +8024,8 @@ A top level maze room called Gambit_11 is in Barsap's Gambit. It is down from Wa
 A southern maze niche with internal name "n113" called a n113 is in Gambit_11. 
 A western maze niche with internal name "n112"called a n112  is in Gambit_11.
 
-There is an ebony maze beam with internal name "e12" called an e12 in n113.
-There is a pine maze beam with internal name "p15" called a p15 in n112.
+There is an ebony maze-beam with internal name "e12" called an e12 in n113.
+There is a pine maze-beam with internal name "p15" called a p15 in n112.
 
 Section - Gambit_12 (GAMBIT_12)
 
@@ -8055,10 +8035,10 @@ An eastern maze niche with internal name "n124" called an n124 is in Gambit_12.
 A southern maze niche with internal name "n123" called a n123 is in Gambit_12.
 A western maze niche with internal name "n122" called a n122 is in Gambit_12.
 
-A potential maze path called a 1N-1NE is east of Gambit_12 and west of Gambit_11. It connects n124 and n112.
+A potential-maze-path called a 1N-1NE is east of Gambit_12 and west of Gambit_11. It connects n124 and n112.
 
-There is a pine maze beam with internal name "p11" called a p11 in n123.
-There is a pine maze beam with internal name "p12" called a p12 in n122.
+There is a pine maze-beam with internal name "p11" called a p11 in n123.
+There is a pine maze-beam with internal name "p12" called a p12 in n122.
 
 Section - Gambit_13 (GAMBIT_13)
 
@@ -8067,9 +8047,9 @@ There is a top level maze room called Gambit_13. The internal name of Gambit_13 
 An eastern maze niche with internal name "n134" called an n134 is in Gambit_13.
 A southern maze niche with internal name "n133" called a n133 is in Gambit_13.
 
-A potential maze path called a 1NW-1N is east of Gambit_13 and west of Gambit_12. It connects n134 and n122.
+A potential-maze-path called a 1NW-1N is east of Gambit_13 and west of Gambit_12. It connects n134 and n122.
 
-There is a pine maze beam with internal name "p13" called a p13 in n133.
+There is a pine maze-beam with internal name "p13" called a p13 in n133.
 
 Section - Gambit_14 (GAMBIT_14)
 
@@ -8079,10 +8059,10 @@ A northern maze niche with internal name "n141" called a n141 is in Gambit_14.
 A southern maze niche with internal name "n143" called a n143 is in Gambit_14.
 A western maze niche with internal name "n142" called a n142 is in Gambit_14.
 
-A potential maze path called a 1NE-1E is south of Gambit_11 and north of Gambit_14. It connects n113 and n141.
+A potential-maze-path called a 1NE-1E is south of Gambit_11 and north of Gambit_14. It connects n113 and n141.
 
-There is a balsa maze beam with internal name "b12" called a b12 in n143.
-There is a balsa maze beam with internal name "b14" called a b14 in n142.
+There is a balsa maze-beam with internal name "b12" called a b12 in n143.
+There is a balsa maze-beam with internal name "b14" called a b14 in n142.
 
 Section - Gambit_15 (GAMBIT_15)
 
@@ -8093,11 +8073,11 @@ An eastern maze niche with internal name "n154" called an n154 is in Gambit_15.
 A southern maze niche with internal name "n153" called a n153 is in Gambit_15.
 A western maze niche with internal name "n152" called a n152 is in Gambit_15.
 
-A potential maze path called a 1C-1E is east of Gambit_15 and west of Gambit_14. It connects n154 and n142.
-A potential maze path called a 1C-1N is north of Gambit_15 and south of Gambit_12. It connects n151 and n123.
+A potential-maze-path called a 1C-1E is east of Gambit_15 and west of Gambit_14. It connects n154 and n142.
+A potential-maze-path called a 1C-1N is north of Gambit_15 and south of Gambit_12. It connects n151 and n123.
 
-There is an ebony maze beam with internal name "e13" called an e13 in n153.
-There is a balsa maze beam with internal name "b11" called a b11 in n152.
+There is an ebony maze-beam with internal name "e13" called an e13 in n153.
+There is a balsa maze-beam with internal name "b11" called a b11 in n152.
 
 Section - Gambit_16 (GAMBIT_16)
 
@@ -8107,10 +8087,10 @@ A northern maze niche with internal name "n161" called a n161 is in Gambit_16.
 An eastern maze niche with internal name "n164" called an n164 is in Gambit_16.
 A southern maze niche with internal name "n163" called a n163 is in Gambit_16.
 
-A potential maze path called a 1W-1C is east of Gambit_16 and west of Gambit_15. It connects n164 and n152.
-A potential maze path called a 1W-1NW is north of Gambit_16 and south of Gambit_13. It connects n161 and n133.
+A potential-maze-path called a 1W-1C is east of Gambit_16 and west of Gambit_15. It connects n164 and n152.
+A potential-maze-path called a 1W-1NW is north of Gambit_16 and south of Gambit_13. It connects n161 and n133.
 
-There is a balsa maze beam with internal name "b13" called a b13 in n163.
+There is a balsa maze-beam with internal name "b13" called a b13 in n163.
 
 Section - Gambit_17 (GAMBIT_17)
 
@@ -8119,9 +8099,9 @@ There is a top level maze room called Gambit_17. The internal name of Gambit_17 
 A northern maze niche with internal name "n171" called a n171 is in Gambit_17.
 A western maze niche with internal name "n172" called a n172 is in Gambit_17.
 
-A potential maze path called a 1SE-1E is north of Gambit_17 and south of Gambit_14. It connects n171 and n143.
+A potential-maze-path called a 1SE-1E is north of Gambit_17 and south of Gambit_14. It connects n171 and n143.
 
-There is a balsa maze beam with internal name "b15" called a b15 in n172.
+There is a balsa maze-beam with internal name "b15" called a b15 in n172.
 
 Section - Gambit_18 (GAMBIT_18)
 
@@ -8131,8 +8111,8 @@ A northern maze niche with internal name "n181" called a n181 is in Gambit_18.
 An eastern maze niche with internal name "n184" called an n184 is in Gambit_18.
 A western maze niche with internal name "n182" called a n182 is in Gambit_18.
 
-A potential maze path called a 1S-1SE is east of Gambit_18 and west of Gambit_17. It connects n184 and n172.
-A potential maze path called a 1S-1C is north of Gambit_18 and south of Gambit_15. It connects n181 and n153.
+A potential-maze-path called a 1S-1SE is east of Gambit_18 and west of Gambit_17. It connects n184 and n172.
+A potential-maze-path called a 1S-1C is north of Gambit_18 and south of Gambit_15. It connects n181 and n153.
 
 Section - Gambit_19 (GAMBIT_19)
 
@@ -8141,10 +8121,10 @@ There is a top level maze room called Gambit_19. The internal name of Gambit_19 
 A northern maze niche with internal name "n191" called a n191 is in Gambit_19.
 An eastern maze niche with internal name "n194" called an n194 is in Gambit_19.
 
-A potential maze path called a 1SW-1S is east of Gambit_19 and west of Gambit_18. It connects n194 and n182.
-A potential maze path called a 1SW-1W is north of Gambit_19 and south of Gambit_16. It connects n191 and n163.
+A potential-maze-path called a 1SW-1S is east of Gambit_19 and west of Gambit_18. It connects n194 and n182.
+A potential-maze-path called a 1SW-1W is north of Gambit_19 and south of Gambit_16. It connects n191 and n163.
 
-There is a pine maze beam with internal name "p14" called a p14 in n194.
+There is a pine maze-beam with internal name "p14" called a p14 in n194.
 
 Section - Gambit_21 (GAMBIT_21)
 
@@ -8153,8 +8133,8 @@ There is a middle level maze room called Gambit_21. The internal name of Gambit_
 A southern maze niche with internal name "n213" called a n213 is in Gambit_21.
 A western maze niche with internal name "n212" called a n212 is in Gambit_21.
 
-A pine maze beam with internal name "p21" called a p21 is in n213.
-A balsa maze beam with internal name "b21" called a b21 is in n212.
+A pine maze-beam with internal name "p21" called a p21 is in n213.
+A balsa maze-beam with internal name "b21" called a b21 is in n212.
 
 Section - Gambit_22 (GAMBIT_22)
 
@@ -8164,10 +8144,10 @@ An eastern maze niche with internal name "n224" called an n224 is in Gambit_22.
 A southern maze niche with internal name "n223" called a n223 is in Gambit_22.
 A western maze niche with internal name "n222" called a n222 is in Gambit_22.
 
-A potential maze path called a 2N-2NE is east of Gambit_22 and west of Gambit_21. It connects n224 and n212. It underlies 1N-1NE.
+A potential-maze-path called a 2N-2NE is east of Gambit_22 and west of Gambit_21. It connects n224 and n212. It underlies 1N-1NE.
 
-A balsa maze beam with internal name "b22" called a b22 is in n222.
-A balsa maze beam with internal name "b23" called a b23 is in n223.
+A balsa maze-beam with internal name "b22" called a b22 is in n222.
+A balsa maze-beam with internal name "b23" called a b23 is in n223.
 
 Section - Gambit_23 (GAMBIT_23)
 
@@ -8176,9 +8156,9 @@ There is a middle level maze room called Gambit_23. The internal name of Gambit_
 An eastern maze niche with internal name "n234" called an n234 is in Gambit_23.
 A southern maze niche with internal name "n233" called a n233 is in Gambit_23.
 
-A potential maze path called a 2NW-2N is east of Gambit_23 and west of Gambit_22. It connects n234 and n222. It underlies 1NW-1N.
+A potential-maze-path called a 2NW-2N is east of Gambit_23 and west of Gambit_22. It connects n234 and n222. It underlies 1NW-1N.
 
-A balsa maze beam with internal name "b24" called a b24 is in n233.
+A balsa maze-beam with internal name "b24" called a b24 is in n233.
 
 Section - Gambit_24 (GAMBIT_24)
 
@@ -8188,10 +8168,10 @@ A northern maze niche with internal name "n241" called a n241 is in Gambit_24.
 A southern maze niche with internal name "n243" called a n243 is in Gambit_24.
 A western maze niche with internal name "n242" called a n242 is in Gambit_24.
 
-A potential maze path called a 2NE-2E is south of Gambit_21 and north of Gambit_24. It connects n213 and n241. It underlies 1NE-1E.
+A potential-maze-path called a 2NE-2E is south of Gambit_21 and north of Gambit_24. It connects n213 and n241. It underlies 1NE-1E.
 
-A pine maze beam with internal name "p23" called a p23 is in n242.
-A pine maze beam with internal name "p22" called a p22 is in n243.
+A pine maze-beam with internal name "p23" called a p23 is in n242.
+A pine maze-beam with internal name "p22" called a p22 is in n243.
 
 Section - Gambit_25 (GAMBIT_25)
 
@@ -8202,11 +8182,11 @@ An eastern maze niche with internal name "n254" called an n254 is in Gambit_25.
 A southern maze niche with internal name "n253" called a n253 is in Gambit_25.
 A western maze niche with internal name "n252" called a n252 is in Gambit_25.
 
-A potential maze path called a 2C-2E is east of Gambit_25 and west of Gambit_24. It connects n254 and n242. It underlies 1C-1E.
-A potential maze path called a 2C-2N is north of Gambit_25 and south of Gambit_22. It connects n251 and n223. It underlies 1C-1N.
+A potential-maze-path called a 2C-2E is east of Gambit_25 and west of Gambit_24. It connects n254 and n242. It underlies 1C-1E.
+A potential-maze-path called a 2C-2N is north of Gambit_25 and south of Gambit_22. It connects n251 and n223. It underlies 1C-1N.
 
-A pine maze beam with internal name "p24" called a p24 is in n252.
-A balsa maze beam with internal name "b25" called a b25 is in n253.
+A pine maze-beam with internal name "p24" called a p24 is in n252.
+A balsa maze-beam with internal name "b25" called a b25 is in n253.
 
 Section - Gambit_26 (GAMBIT_26)
 
@@ -8216,10 +8196,10 @@ A northern maze niche with internal name "n261" called a n261 is in Gambit_26.
 An eastern maze niche with internal name "n264" called an n264 is in Gambit_26.
 A southern maze niche with internal name "n263" called a n263 is in Gambit_26.
 
-A potential maze path called a 2W-2C is east of Gambit_26 and west of Gambit_25. It connects n264 and n252. It underlies 1W-1C.
-A potential maze path called a 2W-2NW is north of Gambit_26 and south of Gambit_23. It connects n261 and n233. It underlies 1W-1NW.
+A potential-maze-path called a 2W-2C is east of Gambit_26 and west of Gambit_25. It connects n264 and n252. It underlies 1W-1C.
+A potential-maze-path called a 2W-2NW is north of Gambit_26 and south of Gambit_23. It connects n261 and n233. It underlies 1W-1NW.
 
-A balsa maze beam with internal name "b26" called a b26 is in n263.
+A balsa maze-beam with internal name "b26" called a b26 is in n263.
 
 Section - Gambit_27 (GAMBIT_27)
 
@@ -8228,9 +8208,9 @@ There is a middle level maze room called Gambit_27. The internal name of Gambit_
 A northern maze niche with internal name "n271" called a n271 is in Gambit_27.
 A western maze niche with internal name "n272" called a n272 is in Gambit_27.
 
-A potential maze path called a 2SE-2E is north of Gambit_27 and south of Gambit_24. It connects n271 and n243. It underlies 1SE-1E.
+A potential-maze-path called a 2SE-2E is north of Gambit_27 and south of Gambit_24. It connects n271 and n243. It underlies 1SE-1E.
 
-A balsa maze beam with internal name "b27" called a b27 is in n272.
+A balsa maze-beam with internal name "b27" called a b27 is in n272.
 
 Section - Gambit_28 (GAMBIT_28)
 
@@ -8240,10 +8220,10 @@ A northern maze niche with internal name "n281" called a n281 is in Gambit_28.
 An eastern maze niche with internal name "n284" called an n284 is in Gambit_28.
 A western maze niche with internal name "n282" called a n282 is in Gambit_28.
 
-A potential maze path called a 2S-2SE is east of Gambit_28 and west of Gambit_27. It connects n284 and n272. It underlies 1S-1SE.
-A potential maze path called a 2S-2C is north of Gambit_28 and south of Gambit_25. It connects n281 and n253. It underlies 1S-1C.
+A potential-maze-path called a 2S-2SE is east of Gambit_28 and west of Gambit_27. It connects n284 and n272. It underlies 1S-1SE.
+A potential-maze-path called a 2S-2C is north of Gambit_28 and south of Gambit_25. It connects n281 and n253. It underlies 1S-1C.
 
-An ebony maze beam with internal name "e21" called an e21 is in n282.
+An ebony maze-beam with internal name "e21" called an e21 is in n282.
 
 Section - Gambit_29 (GAMBIT_29)
 
@@ -8252,8 +8232,8 @@ There is a middle level maze room called Gambit_29. The internal name of Gambit_
 A northern maze niche with internal name "n291" called a n291 is in Gambit_29.
 An eastern maze niche with internal name "n294" called an n294 is in Gambit_29.
 
-A potential maze path called a 2SW-2S is east of Gambit_29 and west of Gambit_28. It connects n294 and n282. It underlies 1SW-1S.
-A potential maze path called a 2SW-2W is north of Gambit_29 and south of Gambit_26. It connects n291 and n263. It underlies 1SW-1W.
+A potential-maze-path called a 2SW-2S is east of Gambit_29 and west of Gambit_28. It connects n294 and n282. It underlies 1SW-1S.
+A potential-maze-path called a 2SW-2W is north of Gambit_29 and south of Gambit_26. It connects n291 and n263. It underlies 1SW-1W.
 
 Section - Gambit_31 (GAMBIT_31)
 
@@ -8262,8 +8242,8 @@ There is a bottom level maze room called Gambit_31. The internal name of Gambit_
 A southern maze niche with internal name "n313" called a n313 is in Gambit_31.
 A western maze niche with internal name "n312" called a n312 is in Gambit_31.
 
-A balsa maze beam with internal name "b31" called a b31 is in n312.
-A balsa maze beam with internal name "b32" called a b32 is in n313.
+A balsa maze-beam with internal name "b31" called a b31 is in n312.
+A balsa maze-beam with internal name "b32" called a b32 is in n313.
 
 Section - Gambit_32 (GAMBIT_32)
 
@@ -8273,10 +8253,10 @@ An eastern maze niche with internal name "n324" called an n324 is in Gambit_32.
 A southern maze niche with internal name "n323" called a n323 is in Gambit_32.
 A western maze niche with internal name "n322" called a n322 is in Gambit_32.
 
-A potential maze path called a 3N-3NE is east of Gambit_32 and west of Gambit_31. It connects n324 and n312. It underlies 2N-2NE.
+A potential-maze-path called a 3N-3NE is east of Gambit_32 and west of Gambit_31. It connects n324 and n312. It underlies 2N-2NE.
 
-A pine maze beam with internal name "p31" called a p31 is in n322.
-A balsa maze beam with internal name "b33" called a b33 is in n323.
+A pine maze-beam with internal name "p31" called a p31 is in n322.
+A balsa maze-beam with internal name "b33" called a b33 is in n323.
 
 Section - Gambit_33 (GAMBIT_33)
 
@@ -8285,9 +8265,9 @@ There is a bottom level maze room called Gambit_33. The internal name of Gambit_
 An eastern maze niche with internal name "n334" called an n334 is in Gambit_33.
 A southern maze niche with internal name "n333" called a n333 is in Gambit_33.
 
-A potential maze path called a 3NW-3N is east of Gambit_33 and west of Gambit_32. It connects n334 and n322. It underlies 2NW-2N.
+A potential-maze-path called a 3NW-3N is east of Gambit_33 and west of Gambit_32. It connects n334 and n322. It underlies 2NW-2N.
 
-A balsa maze beam with internal name "b34" called a b34 is in n333.
+A balsa maze-beam with internal name "b34" called a b34 is in n333.
 
 Section - Gambit_34 (GAMBIT_34)
 
@@ -8297,10 +8277,10 @@ A northern maze niche with internal name "n341" called a n341 is in Gambit_34.
 A southern maze niche with internal name "n343" called a n343 is in Gambit_34.
 A western maze niche with internal name "n342" called a n342 is in Gambit_34.
 
-A potential maze path called a 3NE-3E is south of Gambit_31 and north of Gambit_34. It connects n313 and n341. It underlies 2NE-2E.
+A potential-maze-path called a 3NE-3E is south of Gambit_31 and north of Gambit_34. It connects n313 and n341. It underlies 2NE-2E.
 
-A balsa maze beam with internal name "b35" called a b35 is in n342.
-A balsa maze beam with internal name "b37" called a b37 is in n343.
+A balsa maze-beam with internal name "b35" called a b35 is in n342.
+A balsa maze-beam with internal name "b37" called a b37 is in n343.
 
 Section - Gambit_35 (GAMBIT_35)
 
@@ -8311,11 +8291,11 @@ An eastern maze niche with internal name "n354" called an n354 is in Gambit_35.
 A southern maze niche with internal name "n353" called a n353 is in Gambit_35.
 A western maze niche with internal name "n352" called a n352 is in Gambit_35.
 
-A potential maze path called a 3C-3E is east of Gambit_35 and west of Gambit_34. It connects n354 and n342. It underlies 2C-2E.
-A potential maze path called a 3C-3N is north of Gambit_35 and south of Gambit_32. It connects n351 and n323. It underlies 2C-2N.
+A potential-maze-path called a 3C-3E is east of Gambit_35 and west of Gambit_34. It connects n354 and n342. It underlies 2C-2E.
+A potential-maze-path called a 3C-3N is north of Gambit_35 and south of Gambit_32. It connects n351 and n323. It underlies 2C-2N.
 
-A balsa maze beam with internal name "b36" called a b36 is in n352.
-A balsa maze beam with internal name "b38" called a b38 is in n353.
+A balsa maze-beam with internal name "b36" called a b36 is in n352.
+A balsa maze-beam with internal name "b38" called a b38 is in n353.
 
 Section - Gambit_36 (GAMBIT_36)
 
@@ -8325,10 +8305,10 @@ A northern maze niche with internal name "n361" called a n361 is in Gambit_36.
 An eastern maze niche with internal name "n364" called an n364 is in Gambit_36.
 A southern maze niche with internal name "n363" called a n363 is in Gambit_36.
 
-A potential maze path called a 3W-3C is east of Gambit_36 and west of Gambit_35. It connects n364 and n352. It underlies 2W-2C.
-A potential maze path called a 3W-3NW is north of Gambit_36 and south of Gambit_33. It connects n361 and n333. It underlies 2W-2NW.
+A potential-maze-path called a 3W-3C is east of Gambit_36 and west of Gambit_35. It connects n364 and n352. It underlies 2W-2C.
+A potential-maze-path called a 3W-3NW is north of Gambit_36 and south of Gambit_33. It connects n361 and n333. It underlies 2W-2NW.
 
-A balsa maze beam with internal name "b39" called a b39 is in n363.
+A balsa maze-beam with internal name "b39" called a b39 is in n363.
 
 Section - Gambit_37 (GAMBIT_37)
 
@@ -8337,12 +8317,12 @@ There is a bottom level maze room called Gambit_37. The internal name of Gambit_
 A northern maze niche with internal name "n371" called an n371 is in Gambit_37.
 A western maze niche with internal name "n372" called an n372 is in Gambit_37.
 
-A potential maze path called a 3SE-3E is north of Gambit_37 and south of Gambit_34. It connects n371 and n343. It underlies 2SE-2E.
+A potential-maze-path called a 3SE-3E is north of Gambit_37 and south of Gambit_34. It connects n371 and n343. It underlies 2SE-2E.
 
 After casting trohsme in Gambit_37 (this is the bypass means get to the end not get out rule):
 	say "[if the fire spirit is at hand]The flames of the fire spirit slow down and become weirdly still, streamers of orange and yellow bleeding into the surrounding space. [end if]The red glow from below becomes streakily intermixed with the darkness, the edges of the white cubes start to drip and run, and everything dissolves into a swirl of impressionistic color. When your vision clears, however, you find yourself precisely where you were."
 
-A balsa maze beam with internal name "b3a" called a b3a is in n372.
+A balsa maze-beam with internal name "b3a" called a b3a is in n372.
 
 Section - Gambit_38 (GAMBIT_38)
 
@@ -8352,10 +8332,10 @@ A northern maze niche with internal name "n381" called a n381 is in Gambit_38.
 An eastern maze niche with internal name "n384" called an n384 is in Gambit_38.
 A western maze niche with internal name "n382" called a n382 is in Gambit_38.
 
-A potential maze path called a 3S-3SE is east of Gambit_38 and west of Gambit_37. It connects n384 and n372. It underlies 2S-2SE.
-A potential maze path called a 3S-3C is north of Gambit_38 and south of Gambit_35. It connects n381 and n353. It underlies 2S-2C.
+A potential-maze-path called a 3S-3SE is east of Gambit_38 and west of Gambit_37. It connects n384 and n372. It underlies 2S-2SE.
+A potential-maze-path called a 3S-3C is north of Gambit_38 and south of Gambit_35. It connects n381 and n353. It underlies 2S-2C.
 
-A balsa maze beam with internal name "b3b" called a b3b is in n382.
+A balsa maze-beam with internal name "b3b" called a b3b is in n382.
 
 Section - Gambit_39 (GAMBIT_39)
 
@@ -8364,8 +8344,8 @@ There is a bottom level maze room called Gambit_39. The internal name of Gambit_
 A northern maze niche with internal name "n391" called a n391 is in Gambit_39.
 An eastern maze niche with internal name "n394" called an n394 is in Gambit_39.
 
-A potential maze path called a 3SW-3S is east of Gambit_39 and west of Gambit_38. It connects n394 and n382. It underlies 2SW-2S.
-A potential maze path called a 3SW-3W is north of Gambit_39 and south of Gambit_36. It connects n391 and n363. It underlies 2SW-2W.
+A potential-maze-path called a 3SW-3S is east of Gambit_39 and west of Gambit_38. It connects n394 and n382. It underlies 2SW-2S.
+A potential-maze-path called a 3SW-3W is north of Gambit_39 and south of Gambit_36. It connects n391 and n363. It underlies 2SW-2W.
 
 
 Chapter - Interesting things in Barsap's Gambit
@@ -8708,7 +8688,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the army default life behavior rule.
 
 Persuasion rule for asking the soldiers to try doing something (this is the reroute understood orders to army to generic life response rule):
-	consider the army default life behavior rule;
+	follow the army default life behavior rule;
 	rule fails.
 
 Section - Wicker Cage (wicker_cage)
@@ -8804,7 +8784,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the combatants default life behavior rule.
 
 Persuasion rule for asking the combatants to try doing something (this is the reroute understood orders to combatants to generic life response rule):
-	consider the combatants default life behavior rule;
+	follow the combatants default life behavior rule;
 	rule fails.
 
 
@@ -8840,7 +8820,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the kobold casualty default life behavior rule.
 
 Persuasion rule for asking the large kobold to try doing something (this is the reroute understood orders to large kobold to generic life response rule):
-	consider the kobold casualty default life behavior rule;
+	follow the kobold casualty default life behavior rule;
 	rule fails.
 
 After casting taclor at the kobold (this is the if you can't beat them treat them rule):
@@ -8977,77 +8957,6 @@ Instead of doing something when the current action involves the strange circular
 		continue the action.
 
 
-Chapter - Logic for Secret Trophy Room Puzzle
-
-Section - Note on Overall Puzzle Logic
-
-[This puzzle is one of the classic truthteller/liar logic puzzles, but it is much more complex than those I've encountered elsewhere. Due to the comment in the original source code about potential flaws in the clue structure, I spent a long afternoon and evening going through all of the possibilities with a with spreadsheets and diagrams to minimize my chances of screwing it up.
-
-The main reasons that this puzzle is difficult are:
-
-	1)	Most puzzles in this vein involve crafting a question to put to a speaker of unknown status such that they will answer in a way that tells a useful truth no matter which they are. The classic example is having one question to put to one of two speakers, when you know one is a truthteller and the other is a liar, but you don't know which is which. By phrasing a question along the lines of: "What would the other person say if I asked him whether X is true?", you win. (How? Assume X is phrased as an assertion of a truth (like "1 = 1" or "the sky is blue" or "the treasure is behind door 2"). If the truthteller is asked , he answers truthfully that the other (a liar) would say "No." If the liar is asked, he answers *un*truthfully that the other (a truthteller) would say "No." Thus, you can safely assume that the opposite of the answer provided is the truth in any case, and pick door #2.)
-	
-	Importantly, in this puzzle there is no opportunity to ask a question! There is also no information given that allows any deduction about whether the truthteller (Veritassi) or the liar (Prevaricon) wrote any particular statement, and so there is a total of 16 possibilities about the state of the original paint, with consequent implications about the truth of the various statements.
-
-	2)	Presumably, the overall truth or falsity of the total statement (as opposed to the truth or falsity of each individual proposition within it) is what counts in determining whether the statement is the truth or a lie. If so, then for each of the multi-proposition statements in the south and west trophy rooms, it is possible for individual propositions (or, in the case of the west room, combinations of propositions) within it to be true even if it were written by the lying Prevaricon.
-
-	3)	The way that the west trophy room's clue is written uses an "either ... or ..." construction that, thanks to ambiguities in the English language, may mean either A) a "union" operation (i.e. OR construction), or B) an "exclusive or" operation (i.e. XOR construction). (The difference is that, if both P and Q are true, then the result of the OR is true but the result of the XOR is false.) Since nothing clarifies this, there are even more possibilities (32) to deal with, though this turns out not to matter for definitive solutions (see below).
-	
-	4)	Since the statements reference each other by way of asserting truths or untruths about their respective paint colors, there are elements of "second order" logic in working out the solution.
-
-In my analysis, the puzzle is actually broken in its original state. Although 20 of the 32 possible combinations of assumptions about the underlying paint colors can be thrown out due to inconsistencies in the axioms that result, of those that are consistent:
-
-	6 provide insufficient information to create a definitive solution (with four distinct patterns appearing)
-	4 provide a definitive solution (S,W,E,N) that is not reflected in the function of the game logic
-	2 provide a definitive solution (E,W,S,N) that matches what is implicit in release 3/960606's function
-
-(For all of the preceding groups, the cases are split evenly between OR and XOR construals of the west room's clue. I assumed that, due to the punctuation of the west trophy room's clue, it is safe to assume that normal precedence of logical operators applies, and the AND is evaluated before the OR/XOR.)
-
-It is MUCH easier (and probably quicker) to just brute-force a solution by saving the game and trying all 24 possible patterns for the room order. I'm pretty sure that's what I did when I first played this game, and this is what I would expect anyone to do in reality. However, I have gained a certain grim satisfaction in developing three new clues that, along with the trophy room clues, should narrow things down such that only the pattern laid out by Mr. Yu can be the solution (despite the OR/XOR ambiguity). Please don't hesitate to point out any mistakes.]
-
-Section - Mechanical Logic
-
-To reset the trophy room puzzle:
-	now every trophy depression is not primed;
-	now the eastern trophy depression is primed.
-
-[Note that the original source code's logic intercepted an I6 'Receive' action and would manually move the trophy to a given depression. There does not appear to be any particular reason for this, so in this implementation we allow the normal course of events to proceed and use after rules.]
-
-First after inserting the champion's trophy into a trophy depression (called the tested receptacle) (this is the incorrect trophy placement resets puzzle rule):
-	if the tested receptacle is not primed, reset the trophy room puzzle;
-	continue the action. [to allow audio cue and first placement rules]
-
-[Note that this rule uses "is primed" as the condition in case the puzzle was just reset.]
-
-After inserting the champion's trophy into the eastern trophy depression when the eastern trophy depression is primed (this is the first trophy placement is correct rule):
-	now the eastern trophy depression is not primed;
-	now the western trophy depression is primed;
-	continue the action. [to allow audio cue rule]
-
-After inserting the champion's trophy into the western trophy depression when the western trophy depression was primed (this is the second trophy placement is correct rule):
-	now the western trophy depression is not primed;
-	now the southern trophy depression is primed;
-	continue the action. [to allow audio cue rule]
-
-After inserting the champion's trophy into the southern trophy depression when the southern trophy depression was primed (this is the third trophy placement is correct rule):
-	now the southern trophy depression is not primed;
-	now the northern trophy depression is primed;
-	continue the action. [to allow audio cue rule]
-
-[Note that, in the original source code, the equivalent logic for this rule directly modified the description property of the fake_depression object and the Domed Chamber room. Due to the implementation of this object as a door here, the former change is not necessary (though it is necessary to change the door's state to unsealed) and the latter change is handled with conditional text in the Domed Chamber's description. See the chapter "Domed Chamber" and section "Strange Circular Recess".]
-
-After inserting the champion's trophy into the northern trophy depression when the northern trophy depression was primed (this is the final trophy placement is correct rule):
-	reset the trophy room puzzle;
-	if the white rod piece is in the Secret Trophy Room:
-		accomplish grand-theft-memento;
-		now the strange circular recess is open;
-		move the white rod piece to Domed Chamber;
-		say "You hear a click, followed by a dull thump from the south."
-
-After inserting the champion's trophy into a trophy depression (this is the audio cue for trophy puzzle action rule):
-	say "You hear a click."
-
-
 Chapter - Secret Trophy Room (TROPHY_SECRET)
 
 [Note: The original implementation of this object made use of a 'number' property to keep track of whether the player had visited the room before. This implementation uses the more descriptive property "sealed" -- attached to a different thing, the door called the "strange circular recess"-- to track the state. (see next paragraph)
@@ -9115,9 +9024,9 @@ Chapter - North Trophy Room (TROPHY_N)
 
 A dark room called North Trophy Room is north of Domed Chamber. "This is a bare cubical stone chamber. Some worn black lettering on the wall reads: 'THE EAST CHAMBER IS NOT THE FIRST TROPHY ROOM'. An archway exits south." The bare cubical stone chamber is an unimportant scenery backdrop in North Trophy Room. The archway is in North Trophy Room. [See "Palace Entrance Hall" for declaration of this backdrop.]
 
-Section - Northern Trophy Depression (Nkey_depression)
+Section - northmost trophy depression (Nkey_depression)
 
-A trophy depression called a northern trophy depression is in North Trophy Room.
+A trophy depression called a northmost trophy depression is in North Trophy Room.
 
 
 Chapter - East Trophy Room (TROPHY_E)
@@ -9133,9 +9042,9 @@ A dark room called East Trophy Room is east of Domed Chamber. "This is a bare cu
 ! CHAMBER IS THE SECOND TROPHY ROOM~.  \
 ]
 
-Section - Eastern Trophy Depression (Ekey_depression)
+Section - eastmost trophy depression (Ekey_depression)
 
-A trophy depression called an eastern trophy depression is in East Trophy Room.
+A trophy depression called an eastmost trophy depression is in East Trophy Room.
 
 
 Chapter - South Trophy Room (TROPHY_S)
@@ -9144,18 +9053,18 @@ Chapter - South Trophy Room (TROPHY_S)
 
 A dark room called South Trophy Room is south of Domed Chamber. "This is a bare cubical stone chamber. Some worn black lettering on the wall reads: 'THE EAST CHAMBER HAS SILVER LETTERING AND I HAVE GOLD LETTERING'. An archway exits north." The bare cubical stone chamber is in South Trophy Room. [See "North Trophy Room" for declaration of this backdrop.] The archway is in South Trophy Room. [See "Palace Entrance Hall" for declaration of this backdrop.]
 
-Section - Southern Trophy Depression (Skey_depression)
+Section - southmost trophy depression (Skey_depression)
 
-A trophy depression called a southern trophy depression is in South Trophy Room.
+A trophy depression called a southmost trophy depression is in South Trophy Room.
 
 
 Chapter - West Trophy Room (TROPHY_W)
 
 A dark room called West Trophy Room is west of Domed Chamber. "This is a bare cubical stone chamber. Some worn black lettering on the wall reads: 'EITHER I AM THE SECOND TROPHY ROOM AND THE NORTH CHAMBER IS THE LAST TROPHY ROOM, OR I HAVE GOLD LETTERING'. An archway exits east."  The bare cubical stone chamber is in South Trophy Room. [See "North Trophy Room" for declaration of this backdrop.] The archway is in South Trophy Room. [See "Palace Entrance Hall" for declaration of this backdrop.]
 
-Section - Western Trophy Depression (Wkey_depression)
+Section - westmost trophy depression (Wkey_depression)
 
-A trophy depression called a western trophy depression is in West Trophy Room.
+A trophy depression called a westmost trophy depression is in West Trophy Room.
 
 Section - Worn Black Lettering (lettering)
 
@@ -9166,6 +9075,77 @@ Some worn black lettering is a mass-nouned scenery backdrop. It is in North Trop
 Instead of examining the worn black lettering (this is the examining the lettering reiterates room description rule):
 	say the description of the location;
 	say "[paragraph break]".
+
+
+Chapter - Logic for Secret Trophy Room Puzzle
+
+Section - Note on Overall Puzzle Logic
+
+[This puzzle is one of the classic truthteller/liar logic puzzles, but it is much more complex than those I've encountered elsewhere. Due to the comment in the original source code about potential flaws in the clue structure, I spent a long afternoon and evening going through all of the possibilities with a with spreadsheets and diagrams to minimize my chances of screwing it up.
+
+The main reasons that this puzzle is difficult are:
+
+	1)	Most puzzles in this vein involve crafting a question to put to a speaker of unknown status such that they will answer in a way that tells a useful truth no matter which they are. The classic example is having one question to put to one of two speakers, when you know one is a truthteller and the other is a liar, but you don't know which is which. By phrasing a question along the lines of: "What would the other person say if I asked him whether X is true?", you win. (How? Assume X is phrased as an assertion of a truth (like "1 = 1" or "the sky is blue" or "the treasure is behind door 2"). If the truthteller is asked , he answers truthfully that the other (a liar) would say "No." If the liar is asked, he answers *un*truthfully that the other (a truthteller) would say "No." Thus, you can safely assume that the opposite of the answer provided is the truth in any case, and pick door #2.)
+	
+	Importantly, in this puzzle there is no opportunity to ask a question! There is also no information given that allows any deduction about whether the truthteller (Veritassi) or the liar (Prevaricon) wrote any particular statement, and so there is a total of 16 possibilities about the state of the original paint, with consequent implications about the truth of the various statements.
+
+	2)	Presumably, the overall truth or falsity of the total statement (as opposed to the truth or falsity of each individual proposition within it) is what counts in determining whether the statement is the truth or a lie. If so, then for each of the multi-proposition statements in the south and west trophy rooms, it is possible for individual propositions (or, in the case of the west room, combinations of propositions) within it to be true even if it were written by the lying Prevaricon.
+
+	3)	The way that the west trophy room's clue is written uses an "either ... or ..." construction that, thanks to ambiguities in the English language, may mean either A) a "union" operation (i.e. OR construction), or B) an "exclusive or" operation (i.e. XOR construction). (The difference is that, if both P and Q are true, then the result of the OR is true but the result of the XOR is false.) Since nothing clarifies this, there are even more possibilities (32) to deal with, though this turns out not to matter for definitive solutions (see below).
+	
+	4)	Since the statements reference each other by way of asserting truths or untruths about their respective paint colors, there are elements of "second order" logic in working out the solution.
+
+In my analysis, the puzzle is actually broken in its original state. Although 20 of the 32 possible combinations of assumptions about the underlying paint colors can be thrown out due to inconsistencies in the axioms that result, of those that are consistent:
+
+	6 provide insufficient information to create a definitive solution (with four distinct patterns appearing)
+	4 provide a definitive solution (S,W,E,N) that is not reflected in the function of the game logic
+	2 provide a definitive solution (E,W,S,N) that matches what is implicit in release 3/960606's function
+
+(For all of the preceding groups, the cases are split evenly between OR and XOR construals of the west room's clue. I assumed that, due to the punctuation of the west trophy room's clue, it is safe to assume that normal precedence of logical operators applies, and the AND is evaluated before the OR/XOR.)
+
+It is MUCH easier (and probably quicker) to just brute-force a solution by saving the game and trying all 24 possible patterns for the room order. I'm pretty sure that's what I did when I first played this game, and this is what I would expect anyone to do in reality. However, I have gained a certain grim satisfaction in developing three new clues that, along with the trophy room clues, should narrow things down such that only the pattern laid out by Mr. Yu can be the solution (despite the OR/XOR ambiguity). Please don't hesitate to point out any mistakes.]
+
+Section - Mechanical Logic
+
+To reset the trophy room puzzle:
+	now every trophy depression is not primed;
+	now the eastmost trophy depression is primed.
+
+[Note that the original source code's logic intercepted an I6 'Receive' action and would manually move the trophy to a given depression. There does not appear to be any particular reason for this, so in this implementation we allow the normal course of events to proceed and use after rules.]
+
+First after inserting the champion's trophy into a trophy depression (called the tested receptacle) (this is the incorrect trophy placement resets puzzle rule):
+	if the tested receptacle is not primed, reset the trophy room puzzle;
+	continue the action. [to allow audio cue and first placement rules]
+
+[Note that this rule uses "is primed" as the condition in case the puzzle was just reset.]
+
+After inserting the champion's trophy into the eastmost trophy depression when the eastmost trophy depression is primed (this is the first trophy placement is correct rule):
+	now the eastmost trophy depression is not primed;
+	now the westmost trophy depression is primed;
+	continue the action. [to allow audio cue rule]
+
+After inserting the champion's trophy into the westmost trophy depression when the westmost trophy depression was primed (this is the second trophy placement is correct rule):
+	now the westmost trophy depression is not primed;
+	now the southmost trophy depression is primed;
+	continue the action. [to allow audio cue rule]
+
+After inserting the champion's trophy into the southmost trophy depression when the southmost trophy depression was primed (this is the third trophy placement is correct rule):
+	now the southmost trophy depression is not primed;
+	now the northmost trophy depression is primed;
+	continue the action. [to allow audio cue rule]
+
+[Note that, in the original source code, the equivalent logic for this rule directly modified the description property of the fake_depression object and the Domed Chamber room. Due to the implementation of this object as a door here, the former change is not necessary (though it is necessary to change the door's state to unsealed) and the latter change is handled with conditional text in the Domed Chamber's description. See the chapter "Domed Chamber" and section "Strange Circular Recess".]
+
+After inserting the champion's trophy into the northmost trophy depression when the northmost trophy depression was primed (this is the final trophy placement is correct rule):
+	reset the trophy room puzzle;
+	if the white rod piece is in the Secret Trophy Room:
+		accomplish grand-theft-memento;
+		now the strange circular recess is open;
+		move the white rod piece to Domed Chamber;
+		say "You hear a click, followed by a dull thump from the south."
+
+After inserting the champion's trophy into a trophy depression (this is the audio cue for trophy puzzle action rule):
+	say "You hear a click."
 
 
 Chapter - GUE Entrance (GUE_Gate)
@@ -9434,7 +9414,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the librarian default life behavior rule.
 
 Persuasion rule for asking the librarian to try doing something (this is the reroute understood orders to librarian to generic life response rule):
-	consider the librarian default life behavior rule;
+	follow the librarian default life behavior rule;
 	rule fails.
 
 After blowing the plastic whistle when the librarian is at hand (this is the now who's annoyed with whom rule):
@@ -9605,9 +9585,9 @@ To decide what number is the ones part of (N - a number):
 
 To randomize the lab door combination:
 	now the lock combination of the lab door is a random number between 1 and 999; [note: don't want to allow zero or puzzle is pre-solved!]
-	now the target setting of the left dial is the hundreds part of the lock combination of the lab door;
-	now the target setting of the center dial is the tens part of the lock combination of the lab door;
-	now the target setting of the right dial is the ones part of the lock combination of the lab door.
+	now (the target setting of the lefthand dial) is the hundreds part of the lock combination of the lab door;
+	now (the target setting of the centermost dial) is the tens part of the lock combination of the lab door;
+	now (the target setting of the righthand dial) is the ones part of the lock combination of the lab door.
 
 When play begins (this is the give lab door a random combination on game start rule):
 	randomize the lab door combination.
@@ -9629,23 +9609,23 @@ To say dial settings:
 	repeat with enumerated dial running through combination-dials incorporated by the set of dials:
 		say "[current setting of enumerated dial]".
 
-Section - Left Dial (left_dial)
+Section - Lefthand Dial (left_dial)
 
 [Note that some logic found in this object in the original source code have been moved to the kind definition in this implementation. See "Dial" under "New Kinds".]
 
-A combination-dial called a left dial is part of the set of dials.  The relative position of the left dial is left.
+A combination-dial called a lefthand dial is part of the set of dials.  The relative position of the lefthand dial is left.
 
-Section - Center Dial (center_dial)
-
-[Note that some logic found in this object in the original source code have been moved to the kind definition in this implementation. See "Dial" under "New Kinds".]
-
-A combination-dial called a center dial is part of the set of dials. The relative position of the center dial is center.
-
-Section - Right Dial (right_dial)
+Section - Centermost Dial (center_dial)
 
 [Note that some logic found in this object in the original source code have been moved to the kind definition in this implementation. See "Dial" under "New Kinds".]
 
-A combination-dial called a right dial is part of the set of dials. The relative position of the right dial is right.
+A combination-dial called a centermost dial is part of the set of dials. The relative position of the centermost dial is center.
+
+Section - Righthand Dial (right_dial)
+
+[Note that some logic found in this object in the original source code have been moved to the kind definition in this implementation. See "Dial" under "New Kinds".]
+
+A combination-dial called a righthand dial is part of the set of dials. The relative position of the righthand dial is right.
 
 Section - Green Button (green_button)
 
@@ -10088,9 +10068,13 @@ Section - Toy Volcano (toy_volcano)
 
 [Note that, due to expanded opportunities to play with the toy volcano, the new properties "eruption site" and "eruption receptacle" are added; they do not appear in the original.
 
-In addition, note that the "progression" property functionally replaces a numeric property of the seawater object in the original, i.e. it tracks progression of the eruption event.]
+In addition, note that the "progression" property functionally replaces a numeric property of the seawater object in the original, i.e. it tracks progression of the eruption event.
 
-A toy volcano is in the plastic wrapper. The toy volcano has an upheaval called progression. The toy volcano has a room called eruption site. The eruption site of the toy volcano is nowhere. The toy volcano has a container called eruption receptacle. The eruption receptacle of the toy volcano is nothing. The description of the toy volcano is "A strange thing indeed -- a miniature ceramic toy, that has been painted and shaped in painstaking detail to look like a volcano." The size of the toy volcano is 5.
+For 6L38, the initial assignments of the toy volcano's eruption site and eruption receptacle are not allowed to be "nowhere" and "nothing", respectively. Formal null values for rooms and containers are created to serve.]
+
+Noplace is a room. A container called a non-container is in Noplace.
+
+A toy volcano is in the plastic wrapper. The toy volcano has an upheaval called progression. The toy volcano has a room called eruption site. The eruption site of the toy volcano is Noplace. The toy volcano has a container called eruption receptacle. The eruption receptacle of the toy volcano is the non-container. The description of the toy volcano is "A strange thing indeed -- a miniature ceramic toy, that has been painted and shaped in painstaking detail to look like a volcano." The size of the toy volcano is 5.
 
 Section - Instructional Note (volcano_note)
 
@@ -10152,22 +10136,22 @@ Also note that this object made use of the I6 'general' attribute to track wheth
 
 Finally, note that, because the original source code's ski instructor object has an "Order:" section in its I6 'Life()' routine, the generic life behavior rules for him here are somewhat different than the typical arrangement.]
 
-The ski instructor is an open-inventoried man in Ski Resort. "A tall lanky guy is here, holding two colorful skis. He seems to be [if the ski instructor is carrying the waxy scroll]waxing them with a scroll[else]concentrating greatly on waxing his skis[end if]." The ski instructor can be the beneficiary of trade. The description of the ski instructor is "A tall lanky guy, like I said. He's decked out in fancy bright winter clothes." Understand "dude" or "skier" or "tall" or "lanky" or "guy" as the ski instructor.
+The ski-instructor is an open-inventoried man in Ski Resort. "A tall lanky guy is here, holding two colorful skis. He seems to be [if the ski-instructor is carrying the waxy scroll]waxing them with a scroll[else]concentrating greatly on waxing his skis[end if]." The ski-instructor can be the beneficiary of trade. The description of the ski-instructor is "A tall lanky guy, like I said. He's decked out in fancy bright winter clothes." Understand "dude" or "skier" or "tall" or "lanky" or "guy" as the ski-instructor.
 
-The ski instructor carries some skis. Understand "ski" or "colorful" or "Grayslopes" or "Slaloms" as the skis. The description of the skis is "They look shiny enough to you."
+The ski-instructor carries some skis. Understand "ski" or "colorful" or "Grayslopes" or "Slaloms" as the skis. The description of the skis is "They look shiny enough to you."
 
-The ski instructor wears some earmuffs. Understand "fluffy" or "earmuff" or "muffs" as the earmuffs. The ski instructor wears some unimportant things called some fancy winter clothes. Understand "bright" as the fancy winter clothes.
+The ski-instructor wears some earmuffs. Understand "fluffy" or "earmuff" or "muffs" as the earmuffs. The ski-instructor wears some unimportant things called some fancy winter clothes. Understand "bright" as the fancy winter clothes.
 
-Instead of attacking the ski instructor (this is the resorts are no place for violence rule):
+Instead of attacking the ski-instructor (this is the resorts are no place for violence rule):
 	admonish the player dudily;
 
-Instead of throwing something at the ski instructor (this is the resorts are no place for ballistics rule):
+Instead of throwing something at the ski-instructor (this is the resorts are no place for ballistics rule):
 	silently try dropping the noun;
 	if the player does not bear the noun:
 		say "The ski instructor dodges nimbly. ";
 		admonish the player dudily.
 
-Instead of throwing the prayer book at the ski instructor (this is the it was either a special instead rule for the prayer book or riskily bypassing dropping action checks for everything else rule):
+Instead of throwing the prayer book at the ski-instructor (this is the it was either a special instead rule for the prayer book or riskily bypassing dropping action checks for everything else rule):
 	silently try dropping the noun;
 	if the player does not bear the noun:
 		say "[line break]'Dude!' whines the ski instructor. 'What kind of a priest are you?'";
@@ -10176,20 +10160,20 @@ Instead of throwing the prayer book at the ski instructor (this is the it was ei
 To admonish the player dudily:
 	say "'Dude, you must chill.'"
 
-Instead of answering the ski instructor that something (this is the ski instructor does not engage with unsolicited answers rule):
+Instead of answering the ski-instructor that something (this is the ski instructor does not engage with unsolicited answers rule):
 	dismiss the subject dudily.
 
 The ski instructor does not engage with unsolicited answers rule is listed after the redirect saying to syntax greeting to greeting action rule in the instead rules. 
 
-Instead of telling the ski instructor about something (this is the ski instructor is not into responding intelligibly rule):
+Instead of telling the ski-instructor about something (this is the ski instructor is not into responding intelligibly rule):
 	dismiss the subject dudily.
 
 To dismiss the subject dudily:
 	say "'Uh, whatever, dude.'"
 
-Instead of showing something to the ski instructor (this is the ski instructor response to being shown things rule):
+Instead of showing something to the ski-instructor (this is the ski instructor response to being shown things rule):
 	if the noun is the rag:
-		create an expectant pause with the ski instructor asking the skier's request about trading;
+		create an expectant pause with the ski-instructor asking the skier's request about trading;
 		say "'Hey dude, can I borrow that?'";
 	otherwise:
 		dismiss the subject dudily.
@@ -10200,112 +10184,111 @@ To say trigger exchange:
 	say "You accede to his request.";
 	abide by the successful ski-trade rule.
 
-Instead of asking the ski instructor to try giving the skis to the player (this is the ski instructor won't part with skis rule):
+Instead of asking the ski-instructor to try giving the skis to the player (this is the ski instructor won't part with skis rule):
 	say "'No way, dude.'"
 
 To declaim willingness to surrender items dudily:
 	say "'I'm using it, dude.'"
 
-Instead of asking the ski instructor to try giving the waxy scroll to the player while the ski instructor is not the beneficiary of trade (this is the at least it has wax dude rule):
+Instead of asking the ski-instructor to try giving the waxy scroll to the player while the ski-instructor is not the beneficiary of trade (this is the at least it has wax dude rule):
 	declaim willingness to surrender items dudily.
 
-Instead of asking the ski instructor to try giving the rag to the player while the ski instructor is the beneficiary of trade (this is the no dude we traded it's mine now rule):
+Instead of asking the ski-instructor to try giving the rag to the player while the ski-instructor is the beneficiary of trade (this is the no dude we traded it's mine now rule):
 	declaim willingness to surrender items dudily.
 
 [Note this next response is not in the original.]
 
-Instead of asking the ski instructor to try giving the earmuffs to the player (this is the ears need warmth to dude rule):
+Instead of asking the ski-instructor to try giving the earmuffs to the player (this is the ears need warmth to dude rule):
 	say "'Sorry, bro. Need [']em out here.'"
 
-Instead of asking the ski instructor about "rag" (this is the ski dude knows his polishing implements rule):
+Instead of asking the ski-instructor about "rag" (this is the ski dude knows his polishing implements rule):
 	say "'A rag makes an excellent ski-maintenance accessory, dude.'"
 
-Instead of querying the ski instructor about the waxy scroll (this is the brief and unsatisfying backstory of the waxy scroll's struggle to find meaning in a world gone mad rule):
-	say "'Something I found at the top of a run. [if the ski instructor bears the waxy scroll]Doesn't[else]Didn't[end if] work too well[if the ski instructor bears the waxy scroll], but hey, I gotta wax[end if].'"
+Instead of querying the ski-instructor about the waxy scroll (this is the brief and unsatisfying backstory of the waxy scroll's struggle to find meaning in a world gone mad rule):
+	say "'Something I found at the top of a run. [if the ski-instructor bears the waxy scroll]Doesn't[else]Didn't[end if] work too well[if the ski-instructor bears the waxy scroll], but hey, I gotta wax[end if].'"
 
-Instead of querying the ski instructor about the skis (this is the they're really just for posing dude rule):
+Instead of querying the ski-instructor about the skis (this is the they're really just for posing dude rule):
 	say "'My rad Grayslopes Slaloms. If you don't wax [']em every 30 seconds, they lose their speed.'"
 
-Instead of querying the ski instructor about the earmuffs (this is the so chic rule):
+Instead of querying the ski-instructor about the earmuffs (this is the so chic rule):
 	say "'They fully work, dude. Excellent for chilling when it's chilling.' He laughs moronically."
 
-Instead of querying the ski instructor about the resort (this is the treat querying the dude about the resort as asking him about skiing rule):
-	try asking the ski instructor about "skiing" instead.
+Instead of querying the ski-instructor about the resort (this is the treat querying the dude about the resort as asking him about skiing rule):
+	try asking the ski-instructor about "skiing" instead.
 
-The ski instructor recognizes the snow.
+The ski-instructor recognizes the snow.
 
-Instead of querying the ski instructor about the snow (this is the treat querying the dude about snow as asking him about skiing rule):
-	try asking the ski instructor about "skiing" instead.
+Instead of querying the ski-instructor about the snow (this is the treat querying the dude about snow as asking him about skiing rule):
+	try asking the ski-instructor about "skiing" instead.
 
 [Note the addition of extra keywords and the use of bold type vary slightly from the original.]
 
-Instead of asking the ski instructor about "slopes/slope/runs/run/powder/skiing" (this is the ski instructor isn't so hot on this place rule):
+Instead of asking the ski-instructor about "slopes/slope/runs/run/powder/skiing" (this is the ski instructor isn't so hot on this place rule):
 	say "The skier takes you aside. 'Listen dude, between you and me, the slopes here rot. They used to be way better. But you know, I hear there are some [bold type]killer[roman type] drops up north.'"
 
 To let the dude abide:
 	say "'Dude, I have no idea what you're talking about.'"
 
-Persuasion rule for asking the ski instructor to try doing something:
+Persuasion rule for asking the ski-instructor to try doing something:
 	let the dude abide;
 	rule fails.
 
-Instead of asking the ski instructor about something (this is the generic ski instructor response rule):
+Instead of asking the ski-instructor about something (this is the generic ski instructor response rule):
 	let the dude abide.
 
 [This unusual separation of the trade into its own rule is to allow the successful ski-trade rule to be called separately if the PC agrees to give the rag when asked.]
 
 This is the successful ski-trade rule:
 	now the waxy scroll is in the location;
-	now the ski instructor carries the rag;
-	now the ski instructor is the beneficiary of trade;
+	now the ski-instructor carries the rag;
+	now the ski-instructor is the beneficiary of trade;
 	accomplish waxing-moronic;
 	say "The skier gladly takes the rag and starts polishing immediately. He lets the scroll fall to the ground. 'Excellent, man. Thanks!'[run paragraph on]". [last token compensates for extra line break inserted when saying "[trigger exchange]"]
 
-Instead of giving the rag to the ski instructor (this is the ski instructor will gladly trade rag for scroll rule):
+Instead of giving the rag to the ski-instructor (this is the ski instructor will gladly trade rag for scroll rule):
 	follow the successful ski-trade rule;
 	say "[line break]". [this line compensates for suppressed line break in previous rule when just giving the rag to the ski instructor]
 
-Instead of giving something to the ski instructor (this is the generic ski instructor refusal to accept things rule):
+Instead of giving something to the ski-instructor (this is the generic ski instructor refusal to accept things rule):
 	say "'No thanks, dude.'"
 
-Instead of doing something when the current action is generic life behavior and the current action involves the ski instructor (this is the ski instructor generic life rule):
+Instead of doing something when the current action is generic life behavior and the current action involves the ski-instructor (this is the ski instructor generic life rule):
 	say "At the moment, the skier is too busy waxing."
 
 To indicate that earmuffs are proof against sermons:
-	say "[if the ski instructor wears the earmuffs]A pair of fluffy earmuffs the skier is wearing prevents him from hearing[else]General empty-headedness prevents him from absorbing[end if] the full impact of your sermon[first time]. The chant is wasted[only]."
+	say "[if the ski-instructor wears the earmuffs]A pair of fluffy earmuffs the skier is wearing prevents him from hearing[else]General empty-headedness prevents him from absorbing[end if] the full impact of your sermon[first time]. The chant is wasted[only]."
 
-After greeting the ski instructor (this is the howdy dudily rule):
+After greeting the ski-instructor (this is the howdy dudily rule):
 	say "The skier gives you the [']thumbs-up['] sign. 'Hey, dude.'"
 
-After casting foblub at the ski instructor (this is the earmuffs prevent interest rule):
+After casting foblub at the ski-instructor (this is the earmuffs prevent interest rule):
 	indicate that earmuffs are proof against sermons.
 
-After casting espnis at the ski instructor (this is the earmuffs prevent disinterest rule):
+After casting espnis at the ski-instructor (this is the earmuffs prevent disinterest rule):
 	indicate that earmuffs are proof against sermons.
 
 [Note the following ski-oriented interactions are not part of the original.]
 
-After casting egdelp at the skis when the ski instructor is at hand (this is the this should keep him busy rule):
+After casting egdelp at the skis when the ski-instructor is at hand (this is the this should keep him busy rule):
 	say "The ski instructor regards you with deeply-felt gratitude. 'Thank you, dude,' he chokes out, before returning to his polishing with renewed vigor."
 
-Every turn when the ski instructor is at hand and the ski instructor does not carry the skis (this is the without my skis I am nothing rule):
-	remove the ski instructor from play;
-	say "'No, way, dude! My skis just disappeared! What kind of past life karma causes that?' The skier[if the ski instructor carries the waxy scroll], clutching [the waxy scroll] despondently,[else], moaning about needing to get his aura cleansed,[end if] leaves to the west."
+Every turn when the ski-instructor is at hand and the ski-instructor does not carry the skis (this is the without my skis I am nothing rule):
+	remove the ski-instructor from play;
+	say "'No, way, dude! My skis just disappeared! What kind of past life karma causes that?' The skier[if the ski-instructor carries the waxy scroll], clutching [the waxy scroll] despondently,[else], moaning about needing to get his aura cleansed,[end if] leaves to the west."
 
-Every turn when the ski instructor is at hand and the ski instructor does not carry the waxy scroll and the ski instructor is not the beneficiary of trade (this is the I guess polishing them wasn't that important after all rule):
-	remove the ski instructor from play;
+Every turn when (the ski-instructor is at hand) and (the ski-instructor does not carry the waxy scroll) and (the ski-instructor is not the beneficiary of trade) (this is the I guess polishing them wasn't that important after all rule):
+	remove the ski-instructor from play;
 	accomplish waxing-moronic;
 	say "'Dude, like, that scroll thing just vanished! What a cosmic experience!' On that note, the skier opts to head for the slopes, and leaves to the west."
-
 The I guess polishing them wasn't that important after all rule is listed after the without my skis I am nothing rule in the every turn rules.
 
-Every turn when the ski instructor is at hand and Expectant Pause is not happening (this is the ski instructor bit of business rule):
+Every turn when the ski-instructor is at hand and Expectant Pause is not happening (this is the ski instructor bit of business rule):
 	if a random chance of 1 in 5 succeeds:
 		say "The skier polishes a spot on his skis."
 
 Section - Waxy Scroll (waxy_scroll)
 
-The ski instructor carries a scroll called a waxy scroll. The waxy scroll is inscribed with egdelp.
+There is a scroll called a waxy scroll. The ski-instructor carries the waxy scroll. The waxy scroll is inscribed with egdelp.
 
 
 Chapter - Waiting Room (FROSTHAM_Governer1)
@@ -10511,7 +10494,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the receptionist default life behavior rule.
 
 Persuasion rule for asking the receptionist to try doing something (this is the reroute understood orders to receptionist to generic life response rule):
-	consider the receptionist default life behavior rule;
+	follow the receptionist default life behavior rule;
 	rule fails.
 
 To indicate the secretary's interruption of magic:
@@ -10567,7 +10550,7 @@ Instead of pushing or pulling or rubbing or attacking or searching the office de
 	say "'Do you mind?' the governor says, plainly irritated."
 
 After casting egdelp at the office desk (this is the governor doesn't like waxy buildup rule):
-	say "The desk is covered with a ugly waxy film. The governor looks extremely annoyed and wipes the desk clean with a stack of papers."
+	say "The desk is covered with an ugly, waxy film. The governor looks extremely annoyed and wipes the desk clean with a stack of papers."
 
 Section - Shiny Key (cab_key)
 
@@ -10591,7 +10574,7 @@ The governor recognizes the receptionist, the shiny key, the magistrate, the you
 
 Instead of querying the governor about the shiny key (this is the governor conveniently disowns the key rule):
 	now the governor is already talking to PC;
-	say "'Some key an important visitor forgot while visiting. Probably useless now[if the player bears the key]. You can keep it, for all I care[end if].'"
+	say "'Some key an important visitor forgot while visiting. Probably useless now[if the player bears the shiny key]. You can keep it, for all I care[end if].'"
 
 Instead of querying the governor about the receptionist (this is the governor doesn't pay close attention to subordinates' activities rule):
 	now the governor is already talking to PC;
@@ -10876,7 +10859,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the farmer default life behavior rule.
 
 Persuasion rule for asking the farmer to try doing something (this is the reroute understood orders to farmer to generic life response rule):
-	consider the farmer default life behavior rule;
+	follow the farmer default life behavior rule;
 	rule fails.
 
 To plead simplicity of vocabulary:
@@ -10938,7 +10921,7 @@ A scenery watery plural-named container called some oyster beds are in Oyster Fa
 [Note that since we don't want to encourage direct interaction with the oysters, it seems courteous to prevent them from appearing in the description of the oyster beds.]
 
 Carry out examining the oyster beds when only the oysters are in the oyster beds (this is the suppress listing of oyster bed contents when examining rule):
-	consider the standard examining rule;
+	follow the standard examining rule;
 	rule succeeds. [Forces halt to carry out rulebook processing before moving on to standard examining rule.]
 
 Instead of inserting something into the oyster beds (this is the adventurers like putting things into things rule):
@@ -11840,6 +11823,33 @@ After casting shazok at the storm (this is the playing with lightning is dangero
 		say "It courses through you, frying you to a crisp.";
 		end the game in death.
 
+Section - Log Cabin (WOOD_House)
+
+[Note that this object made use of the I6 'general' attribute to track whether the player had cast the egdelp spell on it. The more descriptive condition "wax-coated" is used in this implementation to similar effect.
+
+Also note that this object had a property called 'number' which was used to track the extent of the damage inflicted on it by the treant. A more descriptive property "damage level" is used in this implementation.]
+
+A fixed in place thing called a log cabin is in Forest Edge. The log cabin can be wax-coated. The log cabin can be whole, slightly damaged, somewhat damaged, severely damaged, or destroyed (this is its damage level property). The description of the log cabin is "A small house built of logs[if the log cabin is slightly damaged]. It looks slightly damaged[else if the log cabin is somewhat damaged]. It looks partially damaged, the roof logs are broken in several places[else if the log cabin is severely damaged]. It looks very damaged. One wall is nearly broken through[else if the log cabin is destroyed] that has collapsed into little more than a pile of broken logs[else] and bugs[end if][if the log cabin is wax-coated]. You notice some portions with spots of wax on them[end if]."
+
+Instead of entering the log cabin when the angry treant is at hand (this is the excuse me buddy just want to get past here rule):
+	say "The angry treant seems to be in the way."
+
+Instead of entering the log cabin (this is the hope you weren't waiting long to get inside rule):
+	say "It's just a tiny log cabin that probably has nothing interesting inside."
+
+After casting egdelp at the log cabin (this is the did you plan to polish the whole thing rule):
+	now the cabin is wax-coated;
+	say "The outside of the cabin is now covered with spots of waxy buildup."
+
+To save the woodsman:
+	remove the angry treant from play;
+	now the player carries the red sphere;
+	say "[line break]Moments later, a woodsman appears from the battered log cabin. 'Much thanks, sir,' he says. 'Appears I mistook that treant for a dead tree and tried to cut it down. Can't say he took it too well.' he says sheepishly.[paragraph break]'Say, you don't look like you're from around these parts. Kinda like this funny thing I found in the woods the other day.' He hands you a strange round object. 'Maybe you know what to do with it?'[paragraph break]He hefts a small hatchet over his shoulder. 'Well, back to do a little logging,' he says, as he walks off into the deep forest, whistling."
+
+Section - Red Sphere (red_sphere)
+
+There is a sphere called a red sphere. The color of the red sphere is "red".
+
 Section - Angry Treant (Treant)
 
 A vegetable-like animal called an angry treant is in Forest Edge. The description of the angry treant is "Treants are basically animated trees. They are considered mythical creatures, usually solitary and quite rare. This particular treant looks similar to a great elm tree. You notice that it seems covered with spots of some sort of blight." Understand "blighted" or "animated" or "tree" or "great" or "elm" as the angry treant.
@@ -11848,8 +11858,8 @@ Some unimportant vegetable-like things called some giant leafy arms are part of 
 
 Every turn when the angry treant is at hand and the log cabin is at hand (this is the apparently the treant likes an audience for his acts of destruction rule):
 	if a random chance of 1 in 2 succeeds:
-		increment the damage level of the log cabin;
-		if the log cabin is collapsed:
+		now the damage level of the log cabin is the value after the damage level of the log cabin;
+		if the log cabin is destroyed:
 			remove the angry treant from play;
 			say "The treant's continuous bludgeoning proves too much for the cabin, and it collapses into splinters! With a roar of vengeful glee, the treant plucks a hapless woodsman from the wreckage and stalks off into the forest with his victim.";
 		else:
@@ -11877,33 +11887,6 @@ Section - Spots of Blight
 [Note that these do not have a separate existence as their own object in the original source code.]
 
 Some spots of blight are vegetable-like things part of the angry treant. The description of the spots of blight is "Patches of mottled yellow, orange, and black. It doesn't look healthy at all." Understand "patches" or "mottled" or "yellow" or "orange" or "black" as the spots of blight.
-
-Section - Log Cabin (WOOD_House)
-
-[Note that this object made use of the I6 'general' attribute to track whether the player had cast the egdelp spell on it. The more descriptive condition "waxy" is used in this implementation to similar effect.
-
-Also note that this object had a property called 'number' which was used to track the extent of the damage inflicted on it by the treant. A more descriptive property "damage level" is used in this implementation.]
-
-A fixed in place thing called a log cabin is in Forest Edge. The log cabin can be waxy. The log cabin can be whole, slightly damaged, somewhat damaged, severely damaged, and collapsed (this is its damage level property). The description of the log cabin is "A small house built of logs[if the log cabin is slightly damaged]. It looks slightly damaged[else if the log cabin is somewhat damaged]. It looks partially damaged, the roof logs are broken in several places[else if the log cabin is severely damaged]. It looks very damaged. One wall is nearly broken through[else if the log cabin is collapsed] that has collapsed into little more than a pile of broken logs[else] and bugs[end if][if the log cabin is waxy] You notice some portions with spots of wax on them."
-
-Instead of entering the log cabin when the angry treant is at hand (this is the excuse me buddy just want to get past here rule):
-	say "The angry treant seems to be in the way."
-
-Instead of entering the log cabin (this is the hope you weren't waiting long to get inside rule):
-	say "It's just a tiny log cabin that probably has nothing interesting inside."
-
-After casting egdelp at the log cabin (this is the did you plan to polish the whole thing rule):
-	now the cabin is waxy;
-	say "The outside of the cabin is now covered with spots of waxy buildup."
-
-To save the woodsman:
-	remove the angry treant from play;
-	now the player carries the red sphere;
-	say "[line break]Moments later, a woodsman appears from the battered log cabin. 'Much thanks, sir,' he says. 'Appears I mistook that treant for a dead tree and tried to cut it down. Can't say he took it too well.' he says sheepishly.[paragraph break]'Say, you don't look like you're from around these parts. Kinda like this funny thing I found in the woods the other day.' He hands you a strange round object. 'Maybe you know what to do with it?'[paragraph break]He hefts a small hatchet over his shoulder. 'Well, back to do a little logging,' he says, as he walks off into the deep forest, whistling."
-
-Section - Red Sphere (red_sphere)
-
-There is a sphere called a red sphere. The color of the red sphere is "red".
 
 
 Chapter - Market District (GURTH_MDistrict)
@@ -11992,7 +11975,7 @@ Section - Thick Brick (good_brick)
 
 A thick brick is in Construction Site. "A thick brick lies nearby." The description of the thick brick is "A thick brick, solid as a rock." The size of the thick brick is 15. Understand "solid" as the thick brick.
 
-Section - Portion of Wall (foundation_wall)
+Section - portion-of-wall (foundation_wall)
 
 [Note that, in the original source code, this object made use of a 'number' property to track state relevant to the brown rod recovery puzzle. It started at 0, and, depending what happened when the player visited it in the past, would be set to 1 if the wall was finished with the good brick and 2 if it was finished with the bad brick. These states are implemented here with the more descriptive labels "unfinished," "finished well," and "finished poorly."
 
@@ -12000,38 +11983,38 @@ Also note that some of the logic associated with this object has been moved to r
 
 Also note that this object use the same logic in its I6 Before() rule for both the I6 Search action and I6 LetGo fake action. The corresponding logic is handled here with a rule for the taking action, due to the operation of the 6G60 Standard Rule "convert remove to take".]
 
-A fixed in place open container called a portion of wall is in Construction Site. "You notice a foundation side wall in the ditch." The portion of wall can be unfinished, finished poorly, or finished well. The description of the portion of wall is "[if the portion of wall is unfinished]It looks somewhat unfinished. Part of it is not yet filled in, leaving a dark recess in the side of the ditch[else if the portion of wall is finished well]The wall is a finished work of brick and mortar. It looks quite strong[else]The wall is a finished work of brick and mortar. You see a spot where the brickwork seems a bit lower in quality[end if]." The size of the portion of wall is 15. Understand "dark" or "recess" or "hole" as the portion of wall when the portion of wall is unfinished. Understand "brick" or "mortar" or "brickwork" as the portion of wall when the portion of wall is finished.
+A fixed in place open container called a portion-of-wall is in Construction Site. "You notice a foundation side wall in the ditch." The portion-of-wall can be unfinished, finished poorly, or finished well. The description of the portion-of-wall is "[if the portion-of-wall is unfinished]It looks somewhat unfinished. Part of it is not yet filled in, leaving a dark recess in the side of the ditch[else if the portion-of-wall is finished well]The wall is a finished work of brick and mortar. It looks quite strong[else]The wall is a finished work of brick and mortar. You see a spot where the brickwork seems a bit lower in quality[end if]." The size of the portion-of-wall is 15. Understand "dark" or "recess" or "hole" as the portion-of-wall when the portion-of-wall is unfinished. Understand "brick" or "mortar" or "brickwork" as the portion-of-wall when the portion-of-wall is finished.
 
-Definition: The portion of wall is finished if it is not unfinished.
+Definition: The portion-of-wall is finished if it is not unfinished.
 
-Rule for deciding the concealed possessions of the portion of wall (this is the it's not a transparent brick rule):
-	if the portion of wall is finished, yes;
+Rule for deciding the concealed possessions of the portion-of-wall (this is the it's not a transparent brick rule):
+	if the portion-of-wall is finished, yes;
 	no. [examining an open container with this rule still shows contents]
 
 To indicate that the wall is now sealed:
 	say "The wall is currently sealed shut."
 
-Instead of inserting something into the portion of wall when the portion of wall is finished (this is the it's only a container for the programmer's convenience rule):
+Instead of inserting something into the portion-of-wall when the portion-of-wall is finished (this is the it's only a container for the programmer's convenience rule):
 	indicate that the wall is now sealed.
 
-Instead of searching the finished portion of wall (this is the containers have many auxiliary behaviors to deal with rule):
+Instead of searching the finished portion-of-wall (this is the containers have many auxiliary behaviors to deal with rule):
 	indicate that the wall is now sealed.
 
-Instead of taking something when the noun is in the finished portion of wall (this is the can't take from sealed wall rule):
+Instead of taking something when the noun is in the finished portion-of-wall (this is the can't take from sealed wall rule):
 	indicate that the wall is now sealed. [can't actually trigger this rule in normal gameplay]
 
-After inserting something into the portion of wall (this is the mask the fact that the hole is not implemented separately rule):
+After inserting something into the portion-of-wall (this is the mask the fact that the hole is not implemented separately rule):
 	say "You put [the noun] into the small hole in the wall."
 
-Instead of attacking the unfinished portion of wall (this is the petty vandalism rarely pays rule):
+Instead of attacking the unfinished portion-of-wall (this is the petty vandalism rarely pays rule):
 	say "You kick at the wall. Unfortunately, it wasn't all that stable, and the wall falls apart, burying you under a pile of loose bricks.";
 	end the game in death.
 
-Instead of attacking the portion of wall when the portion of wall is finished well (this is the I guess the protagonist is not a karate expert rule):
+Instead of attacking the portion-of-wall when the portion-of-wall is finished well (this is the I guess the protagonist is not a karate expert rule):
 	remove foundation from play;
 	say "You try to break the wall, but only end up hurting your hand."
 
-After attacking the portion of wall when the portion of wall is finished poorly (this is the you say temporal paradox I say puzzle solution rule):
+After attacking the portion-of-wall when the portion-of-wall is finished poorly (this is the you say temporal paradox I say puzzle solution rule):
 	now the foundation is primed for search; ["future" version of this object in game world]
 	say "You knock on the weak portion of the wall, and produce a slight crack, that no doubt will cause the homeowners some worry in the future."
 
@@ -12110,13 +12093,13 @@ After searching the foundation when the foundation is not primed for search (thi
 After searching the foundation when the foundation is primed for search (this is the paradoxical foreknowledge rule):
 	say "You dig around in a familiar spot in the hole ";
 	now the foundation is not primed for search;
-	if the portion of wall is empty:
+	if the portion-of-wall is empty:
 		say "but find nothing.";
 	otherwise:
-		if the portion of wall contains the brown rod piece:
+		if the portion-of-wall contains the brown rod piece:
 			accomplish brown-rod-recovery;
-		say "and [a list of things in the portion of wall] spill[if the portion of wall contains exactly one thing]s[end if] to the ground!"; 
-		now every thing in the portion of wall is in Basement.
+		say "and [a list of things in the portion-of-wall] spill[if the portion-of-wall contains exactly one thing]s[end if] to the ground!"; 
+		now every thing in the portion-of-wall is in Basement.
 
 Section - Gray Scroll (gray_scroll)
 
@@ -12155,7 +12138,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the zombie default life behavior rule.
 
 Persuasion rule for asking the zombie to try doing something (this is the reroute understood orders to zombie to generic life response rule):
-	consider the zombie default life behavior rule;
+	follow the zombie default life behavior rule;
 	rule fails.
 
 After casting wigro at the frightening zombie (this is the was it really that frightening rule):
@@ -12230,8 +12213,8 @@ After pushing the black button when the GUE-Automatic oven is closed (this is th
 	say "You press the button and hear a low spinning noise.  ";
 	if the cooking mode of the round dial is Thermonuclear Flash:
 		now everything in the GUE-Automatic oven is off-stage;
-	if the enpanned cake is enclosed by the GUE-Automatic oven and the baking level of the cake is underdone and the cooking mode of the round dial is Baked Goods: [allow underdone cakes to be cooked to done, per original]
-		now the baking level of the cake is done;
+	if the enpanned cake is enclosed by the GUE-Automatic oven and the cake is underdone and the cooking mode of the round dial is Baked Goods: [allow underdone cakes to be cooked to done, per original]
+		now the cake is done;
 	if enpanned dough is enclosed by the GUE-Automatic oven: [note enclosed by vs. in, since dough will be in pan]
 		bake the cake;
 	say "Suddenly, the oven makes a[if cooking mode of the round dial is Thermonuclear Flash] tremendous [']bang['][else] loud [']pop['][end if], and nearly springs off the floor! [if cooking mode of the round dial is Thermonuclear Flash]A bright flash of light seems to originate from somewhere inside the oven! [end if]Then, just as suddenly, everything is quiet again."
@@ -12247,19 +12230,19 @@ To transmogrify dough into cake:
 
 To set cake doneness from oven temperature:
 	if the cooking mode of the round dial is less than Baked Goods:
-		now the baking level of the cake is underdone;
+		now the cake is underdone;
 	otherwise if the cooking mode of the round dial is greater than Baked Goods:
-		now the baking level of the cake is overdone;
+		now the cake is overdone;
 	otherwise:
-		now the baking level of the cake is done;
+		now the cake is done;
 
 To set cake foldedness from dough:
 	if the fold count of the dough is less than 83:
-		now the folding level of the cake is underfolded;
+		now the cake is underfolded;
 	otherwise if the fold count of the dough is greater than 83:
-		now the folding level of the cake is overfolded;
+		now the cake is overfolded;
 	otherwise:
-		now the folding level of the cake is properly folded.
+		now the cake is properly folded.
 
 
 Chapter - Pantry (House_Pantry)
@@ -12386,19 +12369,19 @@ After casting gloth at the dough (this is the gloth does just what it says on th
 
 Section - Cake (cake)
 
-There is an edible thing called a cake. The cake has a doneness called baking level. The cake has a foldedness called folding level. The description of the cake is "It's a[if the baking level of the cake is underdone] somewhat raw-looking[else] nice-looking[end if] cake[if the baking level of the cake is overdone], except that it looks a little burned[end if]." The size of the cake is 14.
+There is an edible thing called a cake. The cake has a doneness. The cake has a foldedness. The description of the cake is "It's a[if the cake is underdone] somewhat raw-looking[else] nice-looking[end if] cake[if the cake is overdone], except that it looks a little burned[end if]." The size of the cake is 14.
 
 After eating the cake (this is the well not the whole cake anyway rule):
 	say "Not bad. Unfortunately, it looks like you can't have your cake and eat it too."
 
 After tasting the cake (this is the it's fun to be pedantic rule):
 	say "You taste a tiny bit of the cake. [run paragraph on]";
-	if the baking level of the cake is not done and the folding level of the cake is not properly folded:
-		say "It tastes a [if the baking level of the cake is underdone]bit underdone[else]little burned[end if] and a [if the folding level of the cake is underfolded]little too soft[else]bit tough[end if].";
-	otherwise if the baking level of the cake is not done:
-		say "It tastes a [if the baking level of the cake is underdone]bit underdone[else]little burned[end if].";
-	otherwise if the folding level of the cake is not properly folded:
-		say "It tastes a [if the folding level of the cake is underfolded]little too soft[else]bit tough[end if].";
+	if the cake is not done and the cake is not properly folded:
+		say "It tastes a [if the cake is underdone]bit underdone[else]little burned[end if] and a [if the cake is underfolded]little too soft[else]bit tough[end if].";
+	otherwise if the cake is not done:
+		say "It tastes a [if the cake is underdone]bit underdone[else]little burned[end if].";
+	otherwise if the cake is not properly folded:
+		say "It tastes a [if the cake is underfolded]little too soft[else]bit tough[end if].";
 	otherwise:
 		say "It tastes great!"
 
@@ -12564,7 +12547,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the tribe default life behavior rule.
 
 Persuasion rule for asking the jungle natives to try doing something (this is the reroute understood orders to tribe to generic life response rule):
-	consider the tribe default life behavior rule;
+	follow the tribe default life behavior rule;
 	rule fails.
 
 To indicate proselytizing relies on a common language:
@@ -12694,7 +12677,7 @@ Instead of going nowhere with the tall statue (this is the can't push statue thr
 [This rule follows the model used for the crates in the General Store. See the "Crate" kind for details.]
 
 Report the player going when the thing gone with is the tall statue (this is the make sure to mention moved statue in new room rule):
-	consider the describe room gone into rule;
+	follow the describe room gone into rule;
 	say "With weary relief, you stop pushing the statue.";
 	rule succeeds. [halt processing of report rulebook]
 
@@ -13022,7 +13005,7 @@ Instead of searching the black pool (this is the I guess this is just looking no
 	say "You can't see a thing; the water is blacker than night."
 
 Carry out examining the black pool (this is the suppress listing of pool contents when examining rule):
-	consider the standard examining rule;
+	follow the standard examining rule;
 	rule succeeds. [Forces halt to carry out rulebook processing before moving on to standard examining rule.]
 
 After casting frotz at the black pool (this is the pool resists illumination rule):
@@ -13913,7 +13896,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the coder default life behavior rule.
 
 Persuasion rule for asking the Implementor to try doing something (this is the reroute understood orders to coder to generic life response rule):
-	consider the coder default life behavior rule;
+	follow the coder default life behavior rule;
 	rule fails.
 
 Report the Implementor going (this is the report Imp's comings and goings rule):
@@ -14316,7 +14299,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the dragon default life behavior rule.
 
 Persuasion rule for asking the dragon to try doing something (this is the reroute understood orders to dragon to generic life response rule):
-	consider the dragon default life behavior rule;
+	follow the dragon default life behavior rule;
 	rule fails.
 
 
@@ -14345,7 +14328,8 @@ A scenery closed unopenable container called a mast is part of the ship. The mas
 [The following rule is a little experiment in using the phrasing from the 6G60 Standard Rules' "can't insert into what's not a container rule" to invoke the underlying I6 library message.]
 
 Check inserting something into the mast when the mast is not splintered (this is the pretend mast is not a container when it's not splintered rule):
-	stop the action with library message inserting it into action number 2 for the second noun.
+	say "[text of can't insert into what's not a container rule response (A)]";
+	stop the action.
 
 Check inserting something that is not a rod into the mast when the mast is splintered (this is the only very narrow things will fit into the mast rule):
 	say "[The noun] is too wide to fit into the hollow core of the mast.";
@@ -14440,7 +14424,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the captain default life behavior rule.
 
 Persuasion rule for asking the captain to try doing something (this is the reroute understood orders to captain to generic life response rule):
-	consider the captain default life behavior rule;
+	follow the captain default life behavior rule;
 	rule fails.
 
 Every turn when the captain is at hand and the captain is not at the helm and the captain is not issuing a challenge (this is the welcome to this man's navy rule):
@@ -14797,6 +14781,131 @@ Every turn (this is the make the trains run on time rule):
 		follow the subway transit rules for moving car.
 
 
+Chapter - Frostham Train Platform (FROSTHAM_GUSPlatform)
+
+Frostham Train Platform is a GUS Train Platform. The track side of the Frostham Train platform is east. South from Frostham Train Platform is Frostham Train Platform. [Note the separate declaration following to override the assumption that it is also north of itself.] North from Frostham Train Platform is nowhere.
+
+Section - Frostham Station Gate (FG_Gate)
+
+A GUS-Gate called a Frostham station gate is southeast of Frostham GUS Station and northwest of Frostham Train Platform.
+
+
+Chapter - Aragain GUS Station (ARAGAIN_GUSStation)
+
+Aragain GUS Station is a multi-line GUS Station. The stop name of the Aragain GUS Station is "Aragain". Aragain GUS Station is down from Aragain North.
+
+Aragain GUS Station is the exodus of Aragain Train Platform. Aragain GUS Station is the exodus of Aragain Train Platform Lower.
+
+
+Chapter - Aragain Train Platform (ARAGAIN_GUSPlatform)
+
+Aragain Train Platform is a GUS Train Platform. The track side of the Aragain Train Platform is east. North from Aragain Train Platform is Aragain Train Platform. [Note this automatically makes it south of itself as well.] Understand "upper" as Aragain Train Platform.
+
+Section - Aragain Station Gate (AG_Gate)
+
+A GUS-Gate called an Aragain station gate is southeast of Aragain GUS Station and northwest of Aragain Train Platform.
+
+
+Chapter - Aragain Train Platform Lower (ARAGAIN_GUSPlatform2)
+
+A GUS Train Platform called Aragain Train Platform Lower is down from Aragain Train Platform. The track side of the Aragain Train Platform Lower is south. The printed name of Aragain Train Platform Lower is "Aragain Train Platform (lower)". West from Aragain Train Platform Lower is Aragain Train Platform Lower. [Note the separate declaration following to override the assumption that it is also east of itself.] East of Aragain Train Platform Lower is nowhere.
+
+
+Chapter - Fublio Valley GUS Station (FUBLIO_GUSStation)
+
+Fublio Valley GUS Station is a GUS Station. The stop name of the Fublio Valley GUS Station is "Southern Fublio Valley". Fublio Valley GUS Station is down from Southern Fublio Valley.
+
+Fublio Valley GUS Station is the exodus of Fublio Valley Train Platform.
+
+
+Chapter - Fublio Valley Train Platform (FUBLIO_GUSPlatform)
+
+Fublio Valley Train Platform is a GUS Train Platform. The track side of the Fublio Valley Train platform is east. North from Fublio Valley Train Platform is Fublio Valley Train Platform. [Note the separate declaration following to override the assumption that it is also south of itself.] South from Fublio Valley Train Platform is nowhere.
+
+Section - Fublio Station Gate (FublioG_Gate)
+
+A GUS-Gate called a Fublio station gate is southeast of Fublio Valley GUS Station and northwest of Fublio Valley Train Platform.
+
+
+Chapter - Greater Anthar GUS Station (ANTHAR_GUSStation)
+
+Greater Anthar GUS Station is a GUS Station. The stop name of the Greater Anthar GUS Station is "Greater Anthar". The platform placement of the Greater Anthar GUS Station is south. Greater Anthar GUS Station is down from Entrance to Greater Anthar.
+
+Greater Anthar GUS Station is the exodus of Greater Anthar Train Platform.
+
+
+Chapter - Greater Anthar Train Platform (ANTHAR_GUSPlatform)
+
+Greater Anthar Train Platform is a GUS Train Platform. The track side of the Greater Anthar Train platform is south. West from Greater Anthar Train Platform is Greater Anthar Train Platform. [Note this automatically makes it east of itself as well.]
+
+Section - Greater Anthar Station Gate (AntharG_Gate)
+
+A GUS-Gate called a Greater Anthar station gate is south of Greater Anthar GUS Station and north of Greater Anthar Train Platform.
+
+
+Chapter - Gurth City GUS Station (GURTH_GUSStation)
+
+Gurth City GUS Station is a multi-line GUS Station. The stop name of the Gurth City GUS Station is "Gurth City". The platform placement of Gurth City GUS Station is southwest. Gurth City GUS Station is down from Gurth City Streets.
+
+After going up from Gurth City GUS Station (this is the it's always raining in Gurth rule):
+	say "You are greeted by a light rain as you leave the station.";
+	continue the action.
+
+Gurth City GUS Station is the exodus of Gurth City Train Platform. Gurth City GUS Station is the exodus of Gurth City Train Platform Lower.
+
+
+Chapter - Gurth City Train Platform (GURTH_GUSPlatform)
+
+Gurth City Train Platform is a GUS Train Platform. The track side of the Gurth City Train Platform is west. North from Gurth City Train Platform is Gurth City Train Platform. [Note this automatically makes it south of itself as well.] Understand "upper" as Gurth City Train Platform.
+
+
+Chapter - Gurth City Train Platform Lower (GURTH_GUSPlatform2)
+
+A GUS Train Platform called Gurth City Train Platform Lower is down from Gurth City Train Platform. The track side of the Gurth City Train Platform Lower is south. The printed name of Gurth City Train Platform Lower is "Gurth City Train Platform (lower)". East from Gurth City Train Platform Lower is Gurth City Train Platform Lower. [Note the separate declaration following to override the assumption that it is also west of itself.] West from Gurth City Train Platform Lower is nowhere.
+
+Section - Gurth Station Gate (GurthG_Gate)
+
+[Note that logic associated with this object for the jammed gate puzzle has been moved to the thin slot. See section "Thin Slot".]
+
+A damaged GUS-Gate called a Gurth station gate is southwest of Gurth City GUS Station and northeast of Gurth City Train Platform.
+
+
+Chapter - New Borphee GUS Station (BORPHEE_GUSStation)
+
+New Borphee GUS Station is a GUS Station. The stop name of the New Borphee GUS Station is "New Borphee". The platform placement of the New Borphee GUS Station is southwest.  New Borphee GUS Station is down from Downtown New Borphee.
+
+New Borphee GUS Station is the exodus of New Borphee Train Platform.
+
+After going up from New Borphee GUS Station (this is the it's always crowded in New Borphee rule):
+	say "You enter the city and are nearly flattened by crowds rushing past.";
+	continue the action.
+
+
+Chapter - New Borphee Train Platform (BORPHEE_GUSPlatform)
+
+New Borphee Train Platform is a GUS Train Platform. The track side of the New Borphee Train Platform is west. South from New Borphee Train Platform is New Borphee Train Platform. [Note the separate declaration following to override the assumption that it is also north of itself.] North from New Borphee Train Platform is nowhere.
+
+Section - Borphee Station Gate (BorpheeG_Gate)
+
+A GUS-Gate called a Borphee station gate is southwest of New Borphee GUS Station and northeast of New Borphee Train Platform.
+
+
+Chapter - Miznia GUS Station (MIZNIA_GUSStation)
+
+Miznia GUS Station is a GUS Station. The stop name of the Miznia GUS Station is "Miznia". The platform placement of Miznia GUS Station is southwest. Miznia GUS Station is down from Mizniaport.
+
+Miznia GUS Station is the exodus of Miznia Train Platform.
+
+
+Chapter - Miznia Train Platform (MIZNIA_GUSPlatform)
+
+Miznia Train Platform is a GUS Train Platform. The track side of the Miznia Train Platform is west. North from Miznia Train Platform is Miznia Train Platform. [Note the separate declaration following to override the assumption that it is also south of itself.] South from Miznia Train Platform is nowhere.
+
+Section - Miznia Station Gate (MizniaG_Gate)
+
+A GUS-Gate called a Miznia station gate is southwest of Miznia GUS Station and northeast of Miznia Train Platform.
+
+
 Chapter - Purple Line
 
 Section - GUS Purple Line
@@ -14856,7 +14965,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the thug default life behavior rule.
 
 Persuasion rule for asking the sinister-looking thug to try doing something (this is the reroute understood orders to thug to generic life response rule):
-	consider the thug default life behavior rule;
+	follow the thug default life behavior rule;
 	rule fails.
 
 After casting foblub at the sinister-looking thug (this is the sorry no it wasn't just the right lecture he was lacking rule):
@@ -14972,7 +15081,7 @@ Instead of doing something when the current action is generic life behavior and 
 	abide by the yupple default life behavior rule.
 
 Persuasion rule for asking the annoying yupple to try doing something (this is the reroute understood orders to yupple to generic life response rule):
-	consider the yupple default life behavior rule;
+	follow the yupple default life behavior rule;
 	rule fails.
 
 After casting espnis at the annoying yupple (this is the don't be bored just switch topics rule):
@@ -15009,7 +15118,7 @@ Section - Thin Slot
 
 Also, note that some logic for the corresponding class in the original source code that is relevant to the I6 LetGo fake action is handled here with a rule for the taking action, due to the operation of the 6G60 Standard Rule "convert remove to take".]
 
-There is a scenery open opaque container called a thin slot. The description of the thin slot is "You see a rather small, thin slot that seems to be almost cut into one of the metal sides of the gate[if a damaged GUS Gate incorporates the thin slot]. It looks slightly dented[end if]." The size of the thin slot is 1. Understand "small" or "metal" or "coin slot" as the thin slot.
+There is a scenery open opaque container called a thin slot. The description of the thin slot is "You see a rather small, thin slot that seems to be almost cut into one of the metal sides of the gate[if a damaged GUS-Gate incorporates the thin slot]. It looks slightly dented[end if]." The size of the thin slot is 1. Understand "small" or "metal" or "coin slot" as the thin slot.
 
 To point out that the slot is too small to reach into:
 	say "There's no way to get anything out of that tiny, thin slot."
@@ -15020,9 +15129,9 @@ Instead of taking something when the thin slot is at hand and the noun is in the
 
 Definition: a thing is slot-fitting if it is a coin or it is the thin wire.
 
-Definition: the thin slot is malfunctioning rather than functioning if it is incorporated by a damaged GUS Gate.
+Definition: the thin slot is malfunctioning rather than functioning if it is incorporated by a damaged GUS-Gate.
 
-Definition: the thin slot is obstructed rather than unobstructed if it is incorporated by a damaged GUS Gate and it contains a coin.
+Definition: the thin slot is obstructed rather than unobstructed if it is incorporated by a damaged GUS-Gate and it contains a coin.
 
 After searching the thin slot (this is the thin slot can't be searched rule):
 	say "The slot is too narrow and dark to see inside of it."
@@ -15037,7 +15146,7 @@ Carry out examining the obstructed thin slot (this is the suppress listing of co
 	say the description of the slot with an extra line break;
 	rule succeeds.
 
-Instead of attacking a GUS Gate when the thin slot is at hand (this is the redirect attacks on a gate to the slot when present rule):
+Instead of attacking a GUS-Gate when the thin slot is at hand (this is the redirect attacks on a gate to the slot when present rule):
 	try attacking the thin slot instead.
 
 Instead of attacking the functioning thin slot (this is the saints aren't vandals rule):
@@ -15053,7 +15162,7 @@ Instead of inserting something that is not slot-fitting into the thin slot (this
 	say "It doesn't look like that's going to fit into the slot."
 
 After inserting a coin (called the sunk cost) into the functioning thin slot (this is the coin accepted rule):
-	now the sunk cost is part of a random GUS Gate incorporating the thin slot;
+	now the sunk cost is part of a random GUS-Gate incorporating the thin slot;
 	say  "The coin slides into the slot with a satisfying thunk."
 
 After inserting a coin (called the sunk cost) into the malfunctioning thin slot (this is the coin jammed rule):
@@ -15063,11 +15172,11 @@ Instead of inserting the thin wire into the unobstructed thin slot (this is the 
 	say "You poke the wire in the slot for a bit, but nothing happens."
 
 Instead of inserting the thin wire into the obstructed thin slot (this is the poking around the obstructed slot frees the jam rule):
-	now every coin in the thin slot is part of a random GUS Gate incorporating the thin slot;
+	now every coin in the thin slot is part of a random GUS-Gate incorporating the thin slot;
 	accomplish contrarian-at-the-gates;
 	say "You poke around in the slot, and manage to free something! There is a solid thunk-like noise."
 
-Every turn when the player can see a GUS Gate (called spotted gate) (this is the move slot where needed rule):
+Every turn when the player can see a GUS-Gate (called spotted gate) (this is the move slot where needed rule):
 	if the location is the front side of the spotted gate:
 		now the thin slot is part of the spotted gate;
 	otherwise:
@@ -15090,131 +15199,6 @@ A metal fence is a backdrop in Frostham GUS Station. The description of the meta
 
 Instead of climbing or jumping over the metal fence (this is the sorry the invisible subway workers will stop you rule):
 	discourage fare-jumping.
-
-
-Chapter - Frostham Train Platform (FROSTHAM_GUSPlatform)
-
-Frostham Train Platform is a GUS Train Platform. The track side of the Frostham Train platform is east. South from Frostham Train Platform is Frostham Train Platform. [Note the separate declaration following to override the assumption that it is also north of itself.] North from Frostham Train Platform is nowhere.
-
-Section - Frostham Station Gate (FG_Gate)
-
-A GUS Gate called a Frostham station gate is southeast of Frostham GUS Station and northwest of Frostham Train Platform.
-
-
-Chapter - Aragain GUS Station (ARAGAIN_GUSStation)
-
-Aragain GUS Station is a multi-line GUS Station. The stop name of the Aragain GUS Station is "Aragain". Aragain GUS Station is down from Aragain North.
-
-Aragain GUS Station is the exodus of Aragain Train Platform. Aragain GUS Station is the exodus of Aragain Train Platform Lower.
-
-
-Chapter - Aragain Train Platform (ARAGAIN_GUSPlatform)
-
-Aragain Train Platform is a GUS Train Platform. The track side of the Aragain Train Platform is east. North from Aragain Train Platform is Aragain Train Platform. [Note this automatically makes it south of itself as well.] Understand "upper" as Aragain Train Platform.
-
-Section - Aragain Station Gate (AG_Gate)
-
-A GUS Gate called an Aragain station gate is southeast of Aragain GUS Station and northwest of Aragain Train Platform.
-
-
-Chapter - Aragain Train Platform Lower (ARAGAIN_GUSPlatform2)
-
-A GUS Train Platform called Aragain Train Platform Lower is down from Aragain Train Platform. The track side of the Aragain Train Platform Lower is south. The printed name of Aragain Train Platform Lower is "Aragain Train Platform (lower)". West from Aragain Train Platform Lower is Aragain Train Platform Lower. [Note the separate declaration following to override the assumption that it is also east of itself.] East of Aragain Train Platform Lower is nowhere.
-
-
-Chapter - Fublio Valley GUS Station (FUBLIO_GUSStation)
-
-Fublio Valley GUS Station is a GUS Station. The stop name of the Fublio Valley GUS Station is "Southern Fublio Valley". Fublio Valley GUS Station is down from Southern Fublio Valley.
-
-Fublio Valley GUS Station is the exodus of Fublio Valley Train Platform.
-
-
-Chapter - Fublio Valley Train Platform (FUBLIO_GUSPlatform)
-
-Fublio Valley Train Platform is a GUS Train Platform. The track side of the Fublio Valley Train platform is east. North from Fublio Valley Train Platform is Fublio Valley Train Platform. [Note the separate declaration following to override the assumption that it is also south of itself.] South from Fublio Valley Train Platform is nowhere.
-
-Section - Fublio Station Gate (FublioG_Gate)
-
-A GUS Gate called a Fublio station gate is southeast of Fublio Valley GUS Station and northwest of Fublio Valley Train Platform.
-
-
-Chapter - Greater Anthar GUS Station (ANTHAR_GUSStation)
-
-Greater Anthar GUS Station is a GUS Station. The stop name of the Greater Anthar GUS Station is "Greater Anthar". The platform placement of the Greater Anthar GUS Station is south. Greater Anthar GUS Station is down from Entrance to Greater Anthar.
-
-Greater Anthar GUS Station is the exodus of Greater Anthar Train Platform.
-
-
-Chapter - Greater Anthar Train Platform (ANTHAR_GUSPlatform)
-
-Greater Anthar Train Platform is a GUS Train Platform. The track side of the Greater Anthar Train platform is south. West from Greater Anthar Train Platform is Greater Anthar Train Platform. [Note this automatically makes it east of itself as well.]
-
-Section - Greater Anthar Station Gate (AntharG_Gate)
-
-A GUS Gate called a Greater Anthar station gate is south of Greater Anthar GUS Station and north of Greater Anthar Train Platform.
-
-
-Chapter - Gurth City GUS Station (GURTH_GUSStation)
-
-Gurth City GUS Station is a multi-line GUS Station. The stop name of the Gurth City GUS Station is "Gurth City". The platform placement of Gurth City GUS Station is southwest. Gurth City GUS Station is down from Gurth City Streets.
-
-After going up from Gurth City GUS Station (this is the it's always raining in Gurth rule):
-	say "You are greeted by a light rain as you leave the station.";
-	continue the action.
-
-Gurth City GUS Station is the exodus of Gurth City Train Platform. Gurth City GUS Station is the exodus of Gurth City Train Platform Lower.
-
-
-Chapter - Gurth City Train Platform (GURTH_GUSPlatform)
-
-Gurth City Train Platform is a GUS Train Platform. The track side of the Gurth City Train Platform is west. North from Gurth City Train Platform is Gurth City Train Platform. [Note this automatically makes it south of itself as well.] Understand "upper" as Gurth City Train Platform.
-
-
-Chapter - Gurth City Train Platform Lower (GURTH_GUSPlatform2)
-
-A GUS Train Platform called Gurth City Train Platform Lower is down from Gurth City Train Platform. The track side of the Gurth City Train Platform Lower is south. The printed name of Gurth City Train Platform Lower is "Gurth City Train Platform (lower)". East from Gurth City Train Platform Lower is Gurth City Train Platform Lower. [Note the separate declaration following to override the assumption that it is also west of itself.] West from Gurth City Train Platform Lower is nowhere.
-
-Section - Gurth Station Gate (GurthG_Gate)
-
-[Note that logic associated with this object for the jammed gate puzzle has been moved to the thin slot. See section "Thin Slot".]
-
-A damaged GUS Gate called a Gurth station gate is southwest of Gurth City GUS Station and northeast of Gurth City Train Platform.
-
-
-Chapter - New Borphee GUS Station (BORPHEE_GUSStation)
-
-New Borphee GUS Station is a GUS Station. The stop name of the New Borphee GUS Station is "New Borphee". The platform placement of the New Borphee GUS Station is southwest.  New Borphee GUS Station is down from Downtown New Borphee.
-
-New Borphee GUS Station is the exodus of New Borphee Train Platform.
-
-After going up from New Borphee GUS Station (this is the it's always crowded in New Borphee rule):
-	say "You enter the city and are nearly flattened by crowds rushing past.";
-	continue the action.
-
-
-Chapter - New Borphee Train Platform (BORPHEE_GUSPlatform)
-
-New Borphee Train Platform is a GUS Train Platform. The track side of the New Borphee Train Platform is west. South from New Borphee Train Platform is New Borphee Train Platform. [Note the separate declaration following to override the assumption that it is also north of itself.] North from New Borphee Train Platform is nowhere.
-
-Section - Borphee Station Gate (BorpheeG_Gate)
-
-A GUS Gate called a Borphee station gate is southwest of New Borphee GUS Station and northeast of New Borphee Train Platform.
-
-
-Chapter - Miznia GUS Station (MIZNIA_GUSStation)
-
-Miznia GUS Station is a GUS Station. The stop name of the Miznia GUS Station is "Miznia". The platform placement of Miznia GUS Station is southwest. Miznia GUS Station is down from Mizniaport.
-
-Miznia GUS Station is the exodus of Miznia Train Platform.
-
-
-Chapter - Miznia Train Platform (MIZNIA_GUSPlatform)
-
-Miznia Train Platform is a GUS Train Platform. The track side of the Miznia Train Platform is west. North from Miznia Train Platform is Miznia Train Platform. [Note the separate declaration following to override the assumption that it is also south of itself.] South from Miznia Train Platform is nowhere.
-
-Section - Miznia Station Gate (MizniaG_Gate)
-
-A GUS Gate called a Miznia station gate is southwest of Miznia GUS Station and northeast of Miznia Train Platform.
 
 
 Chapter - Subway Tunnel (Subway_Tunnel)
@@ -15482,7 +15466,7 @@ Persuasion rule for asking Brother Joseph to try giving a fake rod to the player
 	persuasion succeeds.
 
 Persuasion rule for asking Brother Joseph to try doing something (this is the reroute understood orders to Joseph to generic life response rule):
-	consider the Joe default life behavior rule;
+	follow the Joe default life behavior rule;
 	rule fails.
 
 To rouse Joseph:
@@ -15693,7 +15677,7 @@ After unrolling the sleeping pallet (this is the describe unrolling the pallet r
 	say "With a few deft moves, you unroll the pallet."
 
 Instead of entering the pallet (this is the no time for sleeping in this game rule):
-	if the player has not enclosed the holy amulet:
+	if the player has not carried the holy amulet:
 		say "Your anxiety about the situation has you too high-strung for further rest. You feel that you must see Brother Joseph to better understand your... memory? dream? vision?";
 	otherwise:
 		say "Mindful of the urgency of your quest, you are compelled to disregard whatever weariness you feel."
