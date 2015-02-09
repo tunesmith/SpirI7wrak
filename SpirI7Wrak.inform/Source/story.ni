@@ -11858,7 +11858,7 @@ Some unimportant vegetable-like things called some giant leafy arms are part of 
 
 Every turn when the angry treant is at hand and the log cabin is at hand (this is the apparently the treant likes an audience for his acts of destruction rule):
 	if a random chance of 1 in 2 succeeds:
-		now the damage level of the log cabin is the value after the damage level of the log cabin;
+		now the damage level of the log cabin is the damage level after the damage level of the log cabin;
 		if the log cabin is destroyed:
 			remove the angry treant from play;
 			say "The treant's continuous bludgeoning proves too much for the cabin, and it collapses into splinters! With a roar of vengeful glee, the treant plucks a hapless woodsman from the wreckage and stalks off into the forest with his victim.";
