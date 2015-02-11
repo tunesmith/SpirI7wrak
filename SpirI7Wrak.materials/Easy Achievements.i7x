@@ -18,7 +18,7 @@ An achievement is a kind of object. Every achievement has a number called point 
 
 To accomplish (accomplishment - an achievement):
 	if accomplishment is accomplished, rule succeeds;
-	award point value of accomplishment points;
+	increase the score by point value of accomplishment;
 	now the accomplishment is accomplished.
 
 To list (points scored - an achievement):
